@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery Fallback</title>
+    <link href="styles/fallfront.css" rel="stylesheet">
+    <script src="scripts/jquery-2.1.1.min.js"></script>
+    <script src="scripts/fallback.js"></script>
+</head>
+
+<body>
+
+    <div id="greenTriBg"></div>
+
+    <div id="titleBlock">
+        <div id="title">Browser Breakers</div><div id="slogan">We're cutting edge.</div><div id="slogan2">We're
+        cutting edge.</div>
+        <div id="nav">
+            <div>Articles</div><div>About</div><div>Contact</div>
+        </div>
+    </div>
+
+    <div class="whiteBlock">
+        <div class="insideLeft">
+            <h1>Blending Modes</h1>
+            <p>Soon to be gaining more support from all major browsers is the nifty 'blend-mode' css function. Presently only some browsers offer full support and others none at all. What are blending modes? Simply put, they are the way in which two (or more) images or text get mixed together. Think Photoshop on the web. Here you will see an example of blending backgrounds, showcasing the many modes of blending. This is accomplished through the use of css: 'background-blend-mode'.</p>
+        </div>
+        <div class="insideRight">
+            <p>This css blends the background image(s) with the selected background colour. Since there is limited support from the browsers I have included both a working css version, and our favourite the jQuery fallback.<br><br>
+                A final note: there is also 'mix-blend-mode' for blending text. Do a bit of research and keep it cutting edge!</p>
+            <div class="support">
+                <span class="supportTitle">CSS Browser Support</span><br>
+                Full: Firefox<br>
+                Partial: Chrome & Opera<br>
+                No: Safari & IE
+
+            </div>
+
+        </div>
+
+        <div id="demoWrap">
+                <div id="bk1">
+                    <div class="label">Background 1</div>
+                </div>
+                <div id="bk2">
+                    <div class="label">Background 2</div>
+                </div>
+                <div id="result">
+                    <div class="label">Result</div>
+                </div>
+
+            <div id="selectBlendTitle">Select Blending Mode:</div>
+            <div id="blends">
+                <div id="normal">normal</div>
+                <div id="multiply">multiply</div>
+                <div id="screen">screen</div>
+                <div id="overlay">overlay</div>
+                <div id="darken">darken</div>
+                <div id="lighten">lighten</div>
+                <div id="color-dodge">color-dodge</div>
+                <div id="color-burn">color-burn</div>
+                <div id="hard-light">hard-light</div>
+                <div id="soft-light">soft-light</div>
+                <div id="difference">difference</div>
+                <div id="exclusion">exclusion</div>
+                <div id="hue">hue</div>
+                <div id="saturation">saturation</div>
+                <div id="color">color</div>
+                <div id="luminosity">luminosity</div>
+            </div>
+
+
+            <div class="selectCode">Select Code:</div>
+                <div class="codes">
+                    <div class="useCSS">CSS</div>
+                    <div class="useJQ">jQuery</div>
+                </div>
+         </div>
+
+        <div id="blendSource">
+            <span>Source: </span><a target="_blank" href="http://css-tricks.com/basics-css-blend-modes/">CSS-TRICKS.com</a>
+        </div>
+
+        <div id="marqueeSource">
+            <span>Second CSS Property: </span><a target="_blank" href="http://css3clickchart.com/#marquee">Marquee</a>
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>

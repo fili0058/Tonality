@@ -1,0 +1,323 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: 'soft_sugar_plainregular';
+    src: url('../fonts/Softplain-webfont.eot');
+    src: url('../fonts/Softplain-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Softplain-webfont.woff') format('woff'),
+    url('../fonts/Softplain-webfont.ttf') format('truetype'),
+    url('../fonts/Softplain-webfont.svg#soft_sugar_plainregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gandhi_sansregular';
+    src: url('../fonts/GandhiSans-Regular-webfont.eot');
+    src: url('../fonts/GandhiSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/GandhiSans-Regular-webfont.woff') format('woff'),
+    url('../fonts/GandhiSans-Regular-webfont.ttf') format('truetype'),
+    url('../fonts/GandhiSans-Regular-webfont.svg#gandhi_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'gandhi_sansbold';
+    src: url('../fonts/GandhiSans-Bold-webfont.eot');
+    src: url('../fonts/GandhiSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/GandhiSans-Bold-webfont.woff') format('woff'),
+    url('../fonts/GandhiSans-Bold-webfont.ttf') format('truetype'),
+    url('../fonts/GandhiSans-Bold-webfont.svg#gandhi_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+body{
+    font-family: 'gandhi_sansregular', arial, sans-serif;
+    font-size: 18pt;
+    color: #2d2d2d;
+	
+}
+
+
+#titleBlock{
+    top:0;
+    left:0;
+    position: fixed;
+    width:100%;
+    height:80px;
+    background-color: rgba(30,30,30,.8);
+    z-index: 500;
+
+    display: inline-block;
+    /*overflow: hidden;*/
+}
+
+
+#title{
+    font-family: 'soft_sugar_plainregular', arial, sans-serif;
+    font-size: 50pt;
+    position:absolute;
+    top:5%;
+    left:40px;
+    color: #ff6f58;
+    -o-transform:rotate(-2deg);
+    -moz-transform:rotate(-2deg);
+    -webkit-transform:rotate(-2deg);
+    transform:rotate(-2deg);
+    -o-transition:all .4s;
+    -moz-transition:all .4s;
+    -webit-transition:all .4s;
+    transition:all .4s;
+}
+
+#title:hover{
+    color: #f65832;
+    cursor: pointer;
+    top:13%;
+    -o-transform:rotate(-3.5deg);
+    -moz-transform:rotate(-3.5deg);
+    -webkit-transform:rotate(-3.5deg);
+    transform:rotate(-3.5deg);
+}
+
+
+#nav{
+    position: absolute;
+    top:40%;
+    right:10px;
+    color: #ff6f58;
+}
+
+#nav div{
+    margin-right:30px;
+    display: inline-block;
+    transition:all .4s;
+}
+
+#nav div:hover{
+    color:white;
+    cursor: pointer;
+}
+
+
+#slogan{
+    position: absolute;
+    top:24px;
+    left:655px;
+    color: #ffffff;
+    font-family: 'gandhi_sansregular', arial, sans-serif;
+    font-size: 21pt;
+}
+
+#slogan2{
+    position: absolute;
+    top:-5px;
+    left:635px;
+    color: #ffffff;
+    font-family: 'gandhi_sansregular', arial, sans-serif;
+    font-size: 55pt;
+    opacity: .04;
+}
+
+
+.whiteBlock{
+
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+
+    position:relative;
+    top:150px;
+    height:1300px;
+    z-index: 10;
+    background-color: rgb(252,252,252);
+    box-shadow: 0 0 120px rgba(0,0,0,.6);
+}
+
+.insideLeft{
+    display: inline-block;
+    /*border: 1px solid blue;*/
+    margin:40px 20px 30px 50px;
+    width:400px;
+}
+
+.insideRight{
+    position: relative;
+    display: inline-block;
+    /*border: 1px solid green;*/
+    margin: 40px 50px 0 40px;
+    width:400px;
+    height:500px;
+    vertical-align: text-bottom;
+    top:-25px;
+
+}
+
+h1{
+    font-size: 23pt;
+    margin:0 0;
+    padding:0 0;
+    font-family: 'gandhi_sansbold', arial, sans-serif;
+    color: #ff6f58;
+}
+
+#greenTriBg{
+    position:fixed;
+    background:url('../images/congruent_pentagon.png');
+	width:100%;
+	height:500%;
+	top:0;
+	left:0;	
+}
+
+
+p{
+    line-height: 27pt;
+}
+
+
+.support{
+    font-size: 14pt;
+    line-height: 18pt;
+}
+
+.supportTitle{
+    font-family: 'gandhi_sansbold', arial, sans-serif;
+}
+
+#demoWrap{
+    position: relative;
+    margin: 20px auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+#bk1{
+    background: url('../images/clocktower.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height:250px;
+    width:250px;
+}
+
+#bk2{
+    vertical-align: top;
+    display: inline-block;
+    background-color: #00DAE8;
+    height:250px;
+    width:250px;
+}
+
+#result{
+    background: url('../images/clocktower.jpg') no-repeat center center, #00DAE8;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    position: relative;
+    left:-6px;
+    top:-255px;
+    display: inline-block;
+    height:500px;
+    width:500px;
+
+}
+
+#blends{
+    position: absolute;
+    top:0;
+    left:-162px;
+}
+
+#blends div{
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    background-color: white;
+    margin-bottom: 5px;
+    padding: 0 7px;
+}
+
+#blends div:hover{
+    cursor: pointer;
+}
+
+#bk1 .label, #bk2 .label{
+    position: relative;
+    top:5px;
+    left:5px;
+    width: 110px;
+    background-color: white;
+    padding: 0 7px;
+    font-size: 14pt;
+}
+
+#result .label{
+    position: relative;
+    top:5px;
+    left:5px;
+    width: 52px;
+    background-color: white;
+    padding: 0 7px;
+    font-size: 14pt;
+}
+
+#selectBlendTitle{
+    position: absolute;
+    top:-40px;
+    left:-200px;
+    background-color: white;
+    padding: 0 7px;
+    font-family: 'gandhi_sansbold', arial, sans-serif;
+}
+
+.selectCode{
+    position: absolute;
+    top:-40px;
+    right:-160px;
+    background-color: white;
+    padding: 0 7px;
+    font-family: 'gandhi_sansbold', arial, sans-serif;
+}
+
+.codes div{
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    background-color: white;
+    margin-bottom: 5px;
+    padding: 0 7px;
+    width: 66px;
+}
+
+.codes div:hover {
+    cursor: pointer;
+}
+
+.codes{
+    position: absolute;
+    right:-130px;
+    top:0;
+}
+
+#blendSource{
+    position:absolute;
+    bottom:20px;
+    left:32%;
+}
+
+#marqueeSource{
+    position: absolute;
+    background-color: white;
+    padding:10px;
+    bottom:-80px;
+}
