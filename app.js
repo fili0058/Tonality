@@ -1,11 +1,15 @@
 var express = require('express');
 var path = require('path');
 var fs = require("fs");
-
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/tonality');
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -18,29 +22,6 @@ app.set('port', (process.env.PORT || 5000));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-/*
-function loadHomePage(req, res)
-{
-    fs.readFile('/views/newfeatures.html', function(err, HTMLdata)
-            {
-                        //the callback functions typically have at least two variables: err, which is an error code if an error happens, and then data, which is the information you got from your request
-                if(err)
-                {
-                    console.log(err);
-                }
-                else
-                { 
-                    res.writeHead(200,
-                  {
-                    'Content-type': 'text/HTML; charset-utf-8'
-                  });
-                  res.end(HTMLdata);
-                }
-        //this if statement will run after the file has either loaded sussessfully or failed - if it failed, an error will be logged to the console. If it succeeded, it will send a respond to the browser
-        //this function is called from inside of our createServer function, which is where the request and response variables come from
-            });
-}
-*/
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -50,6 +31,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Make my db accessible to the routers
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
@@ -84,6 +71,15 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+
+
+
+
+
+
+
 
 
 module.exports = app;
