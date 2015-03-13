@@ -2,7 +2,7 @@ console.log("works");
 
 $(document).ready(function() {
     $.ajax({
-        url: 'http://localhost:5000/userlist',
+        url: 'https://tonality.herokuapp.com/userlist',
         dataType: "text",
         jsonpCallback: "_testcb",
         cache: false,
