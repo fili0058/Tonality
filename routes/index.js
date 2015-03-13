@@ -17,6 +17,12 @@ router.get('/userlist', function(req, res) {
     });
 });
 
+
+router.get('/ajax', function(req, res) {
+     
+});
+
+
 /*console.log("hello");
     setInterval(function()
     {

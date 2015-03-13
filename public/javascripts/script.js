@@ -1,9 +1,17 @@
 console.log("works");
 
-var dnode = require('dnode');
-
-dnode.connect(5050, function (remote) {
-    remote.mul(10, 20, function (n) {
-        console.log('10 * 20 = ' + n);
+$(document).ready(function() {
+    $.ajax({
+        url: 'http://localhost:5000/userlist',
+        dataType: "text",
+        jsonpCallback: "_testcb",
+        cache: false,
+        timeout: 5000,
+        success: function(data) {
+            alert(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
     });
 });
