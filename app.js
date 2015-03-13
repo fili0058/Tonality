@@ -6,6 +6,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var dnode = require('dnode');
+
+var server = dnode({
+    mul : function (n, m, cb) { cb(n * m) }
+});
+server.listen(5050);
+
+
 var mongo = require('mongodb');
 var monk = require('monk');
 /*var db = monk('localhost:27017/tonality');*/
@@ -73,13 +81,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-
-
-
-
-
-
 
 
 
