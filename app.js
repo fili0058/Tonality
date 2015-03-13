@@ -8,7 +8,9 @@ var bodyParser = require('body-parser');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/tonality');
+/*var db = monk('localhost:27017/tonality');*/
+
+var db = monk('alain:admin@ds031661.mongolab.com:31661/tonality');
 
 
 var routes = require('./routes/index');
