@@ -1,0 +1,8 @@
+extends layout
+
+block content
+
+        each user, i in ajax
+            
+            li(style='color:' + user.username)= user.username
+            li(style="color:blue")= user.email
