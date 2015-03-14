@@ -17,16 +17,39 @@ router.get('/userlist', function(req, res) {
     });
 });
 
+
     
 router.get('/ajax', function(req, res) {
     var db = req.db;
     var collection = db.get('usercollection');
+    
+   
        collection.find({},{},function(e,docs){
-        res.render('ajax', {
+           var doc = { usercollection : docs };
+           //console.log(docs)
+           res.send(doc);
+           res.render('ajax', {docs: JSON.stringify(docs), title: 'Test'});
+   
+      /* res.render('ajax', {
             "ajax" : docs
-        });
-    });
+        });*/
+         
+           
+   });
 });
+
+router.get('/left', function(req, res) {
+      var db = req.db;
+    var collection = db.get('usercollection');
+
+  var document = {username:"David", email:"About MongoDB"};
+collection.insert(document, {w: 1}, function(err, records){
+  //console.log("Record added as "+records[0]._id);
+});
+   //db.usercollection.insert({ "username" : "grey", "email" : "testuser1@testdomain.com" });
+    res.send("left server")
+});
+
 
 
 /*console.log("hello");
