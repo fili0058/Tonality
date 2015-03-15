@@ -7,13 +7,19 @@ html{
 body {
   position: relative;
   top: 50%;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Julius Sans One', sans-serif;
+   
     width: 42%;
-    margin: -20.5% auto 0;
+    margin: -26.5% auto 0;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1{
+     font-size: 38px;
+    letter-spacing: 5px;
 }
 
 section{
@@ -21,9 +27,23 @@ section{
 }
 
 div{
-    background: #b2b2b2;
-    width: 2.7%;
-    padding-bottom: 2.7%;
-    margin: 0.3%;
+    background: hsl(150, 0%, 70%);
+    width: 2.6%;
+    padding-bottom: 2.6%;
+    margin: 0.35%;
     float: left;
 }
+
+/*box-shadow: 0 0 20px hsl(196, 100%, 50%);*/
+
+/*.row1 div {
+    background: hsl(196, 60%, 50%);
+}
+.row2 div {
+    background: hsl(164, 60%, 50%);
+}
+.row3 div {
+    background: hsl(5, 60%, 50%);
+}
+.row4 div {
+    background: hsl(347, 60%, 50%);*/

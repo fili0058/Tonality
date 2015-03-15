@@ -5,8 +5,8 @@ $(document).ready(function() {
      setInterval(function()
             {
     $.ajax({
-        //url: 'http://localhost:5000/ajax',
-        url: 'http://tonality.herokuapp.com/ajax',
+        url: 'http://localhost:5000/ajax',
+        //url: 'http://tonality.herokuapp.com/ajax',
         dataType: "json",
         jsonpCallback: "_testcb",
         cache: false,
@@ -24,14 +24,13 @@ $(document).ready(function() {
     
     $(document).keydown(function(e)
     {
+        // left arrow
          if (e.keyCode == 37) {
          
          //console.log("left");
-             
-                 
-      $.ajax({
-        //url: 'http://localhost:5000/left',
-        url: 'http://tonality.herokuapp.com/left',
+    $.ajax({
+        url: 'http://localhost:5000/left',
+        //url: 'http://tonality.herokuapp.com/left',
         dataType: "text",
         jsonpCallback: "_testcb",
         cache: false,
@@ -43,9 +42,9 @@ $(document).ready(function() {
             alert('error ' + textStatus + " " + errorThrown);
         }
     });
-         
-         
-         }   // left arrow
+    
+             
+         }   
          if (e.keyCode == 38) { console.log("up"); }   // up arrow
          if (e.keyCode == 39) { console.log("right"); }   // right arrow
          if (e.keyCode == 40) { console.log("down"); }   // down arrow   
