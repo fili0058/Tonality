@@ -17,11 +17,11 @@ router.get('/userlist', function(req, res) {
     });
 });
 
-
+/*usercollection*/
     
 router.get('/ajax', function(req, res) {
     var db = req.db;
-    var collection = db.get('usercollection');
+    var collection = db.get('testdatabase');
     
    
        collection.find({},{},function(e,docs){
@@ -40,7 +40,7 @@ router.get('/ajax', function(req, res) {
 
 router.get('/left', function(req, res) {
       var db = req.db;
-    var collection = db.get('usercollection');
+    var collection = db.get('testdatabase');
 
   var document = {username:"David", email:"About MongoDB"};
 collection.insert(document, {w: 1}, function(err, records){
