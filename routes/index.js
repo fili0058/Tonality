@@ -102,7 +102,50 @@ var newvalue = req.body['field1'];
     
     //{ some: JSON.stringify({response:'json'}) }
 
-    
+   
+
+
+ router.post('/modify', function (req, res){
+//var newvalue = req.body['field1'];
+    //   Math.floor(newvalue);
+       //var newnew = 9;
+       //newnew += 10;
+   //console.log(req.body);
+   //console.log('req received');
+    //var newstring = newnew.toString();
+   //res.send(newstring);
+
+     var browserRow = req.body['localRow'];
+     //res.send(browserRow);
+     var queryRow = Math.floor(browserRow);
+     
+     var browserCol = req.body['localCol'];
+     //res.send(browserCol);
+     var queryCol = Math.floor(browserCol);
+     
+      var browserHue = req.body['localHue'];
+     //res.send(browserHue);
+     
+      var browserLight = req.body['light'];
+     //res.send(browserLight);
+     
+     var db = req.db;
+    var collection = db.get('grid');     
+     
+     collection.update(
+        { "row": queryRow, "col": queryCol },
+            { 
+            $set: 
+                { hue: 5 }
+            }
+   
+    )
+     
+     
+     
+       //req.body['field1']
+});
+
 
 
 /*console.log("hello");

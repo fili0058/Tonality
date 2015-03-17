@@ -32,6 +32,7 @@ div{
     padding-bottom: 2.6%;
     margin: 0.35%;
     float: left;
+    transition: background-color .3s, box-shadow .3s;
 }
 
 /*box-shadow: 0 0 20px hsl(196, 100%, 50%);*/
