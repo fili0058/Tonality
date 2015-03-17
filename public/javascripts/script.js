@@ -15,8 +15,8 @@ refreshLocal();
             {
     
         $.ajax({
-            url: 'http://localhost:5000/ajax',
-            //url: 'http://tonality.herokuapp.com/ajax',
+            //url: 'http://localhost:5000/ajax',
+            url: 'http://tonality.herokuapp.com/ajax',
             dataType: "json",
             jsonpCallback: "_testcb",
             cache: false,
@@ -82,8 +82,9 @@ refreshLocal();
              $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
              
            $.ajax({ 
-           url: '/modify',
-            
+           //url: 'http://localhost:5000/modify',
+            url: 'http://tonality.herokuapp.com/modify',
+               
            type: 'POST',
            cache: false, 
                  
@@ -126,7 +127,7 @@ refreshLocal();
          if (e.keyCode == 13) { console.log("enter"); }
         
         
-        if (e.keyCode == 48) { console.log("new grid"); 
+       /* if (e.keyCode == 48) { console.log("new grid"); 
 
                         $.ajax({
                                 url: 'http://localhost:5000/newgrid',
@@ -142,7 +143,7 @@ refreshLocal();
                                     alert('error ' + textStatus + " " + errorThrown);
                                 }
                         });
-                 }
+                 }*/
         
  });
   
