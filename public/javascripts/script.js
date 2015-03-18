@@ -137,7 +137,7 @@ refreshLocal();
 
                                    $.ajax({ 
                                 //       url: 'http://localhost:5000/modify',
-                            //: 'http://tonality.herokuapp.com/modify',
+                            url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
