@@ -4,7 +4,8 @@ $(document).ready(function() {
 
 var cRow = 15;
 var cCol = 15;
-var cColor = 164;
+var cColor = 196;
+var colorNum = 0;
 //influence: true = light   false = dark
 var influence = true;
 
@@ -17,8 +18,8 @@ refreshLocal();
     setInterval(function()
             {
                         $.ajax({ 
-//                                   url: 'http://localhost:5000/modify',
-                                    url: 'http://tonality.herokuapp.com/modify',
+                            url: 'http://localhost:5000/modify',
+                            //        url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -83,8 +84,8 @@ refreshLocal();
             
             
             $.ajax({ 
-//                                   url: 'http://localhost:5000/modify',
-                                    url: 'http://tonality.herokuapp.com/modify',
+                url: 'http://localhost:5000/modify',
+                            //        url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -129,8 +130,8 @@ refreshLocal();
                                      $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
 
                                    $.ajax({ 
-//                                   url: 'http://localhost:5000/modify',
-                                    url: 'http://tonality.herokuapp.com/modify',
+                                       url: 'http://localhost:5000/modify',
+                            //        url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -204,8 +205,8 @@ refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
              
              $.ajax({ 
-//                                   url: 'http://localhost:5000/modify',
-                                    url: 'http://tonality.herokuapp.com/modify',
+                 url: 'http://localhost:5000/modify',
+                            //        url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -250,8 +251,8 @@ refreshLocal();
                               
                                
                                $.ajax({ 
-//                                   url: 'http://localhost:5000/modify',
-                                    url: 'http://tonality.herokuapp.com/modify',
+                                   url: 'http://localhost:5000/modify',
+                            //        url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -289,7 +290,8 @@ refreshLocal();
                               }   // down arrow 
         
          if (e.keyCode == 32) { console.log("space"); 
-                              cColor = 5;
+                              
+                               changeColor();
                                refreshLocal();
                               }
          if (e.keyCode == 13) { console.log("enter"); }
@@ -329,10 +331,30 @@ refreshLocal();
     $('section:nth-of-type(' + cRow+ ') div:nth-of-type(' + cCol + ')').css("background-color", 'hsl(' + cColor + ', 60%, 50%)').css("box-shadow", '0 0 13px' );
 }
     
+   
+    
+                      function changeColor(){
+        colorNum++;
+        
+        if (colorNum == 1){
+            cColor = 164;
+        }else if (colorNum == 2){
+            cColor = 5;
+        }else if (colorNum == 3){
+            cColor = 347;
+        }else if (colorNum == 4){
+            cColor = 196;
+            colorNum = 0;
+        }
+        
+    }
+    
+    
+    
     
 });
 
-
+  
 
 
 
@@ -367,5 +389,12 @@ refreshLocal();
             }
         });*/
 
+// random between 1 and 2
+/*<script>
+function myFunction() {
+    var x = document.getElementById("demo")
+    x.innerHTML = Math.floor((Math.random() * 2) + 1);
+}
+</script>*/
 
 
