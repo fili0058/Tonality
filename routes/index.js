@@ -10,8 +10,8 @@ router.get('/', function(req, res, next) {
 
 /*usercollection*/
     
-router.get('/ajax', function(req, res) {
-    var db = req.db;
+//router.get('/ajax', function(req, res) {
+   /* var db = req.db;
     var collection = db.get('grid');
     
    
@@ -20,18 +20,18 @@ router.get('/ajax', function(req, res) {
            //console.log(docs)
           
            //res.render('ajax', {docs: JSON.stringify(docs), title: 'Test'});
-    res.send(doc);
+    res.send(doc);*/
       /* res.render('ajax', {
             "ajax" : docs
         });*/
          
            
-   });
-});
+  // });
+//});
 
-router.get('/left', function(req, res) {
-      var db = req.db;
-    var collection = db.get('testdatabase');
+//router.get('/left', function(req, res) {
+     /* var db = req.db;
+    var collection = db.get('testdatabase');*/
 
   /*var document = {username:"David", email:"About MongoDB"};
 collection.insert(document, {w: 1}, function(err, records){
@@ -39,7 +39,7 @@ collection.insert(document, {w: 1}, function(err, records){
 });*/
   
     
-    collection.update(
+    /*collection.update(
         { username: "David" },
             {
             username: "David",
@@ -47,15 +47,15 @@ collection.insert(document, {w: 1}, function(err, records){
             score: 1
             },
    { upsert: true }
-    )
+    )*/
     
     
     //collection.update(criteria, update[[, options], callback]);
    // db.inventory.find( { username: "David" } )
     
     
-    res.send("left server")
-});
+    //res.send("left server")
+//});
 
 
 router.get('/newgrid', function(req, res) {
@@ -85,7 +85,7 @@ collection.insert(document, {w: 1}, function(err, records){
 //router.post('/send', function(req, res) {
    
     
-   router.post('/send', function (req, res){
+/*   router.post('/send', function (req, res){
 var newvalue = req.body['field1'];
        Math.floor(newvalue);
        var newnew = 9;
@@ -97,7 +97,7 @@ var newvalue = req.body['field1'];
 
        
        //req.body['field1']
-});
+});*/
 
     
     //{ some: JSON.stringify({response:'json'}) }
@@ -125,6 +125,7 @@ var newvalue = req.body['field1'];
      
       var browserHue = req.body['localHue'];
      //res.send(browserHue);
+     var newHue = Math.floor(browserHue);
      
       var browserLight = req.body['light'];
      //res.send(browserLight);
@@ -136,10 +137,29 @@ var newvalue = req.body['field1'];
         { "row": queryRow, "col": queryCol },
             { 
             $set: 
-                { hue: 5 }
+                { hue: newHue }
             }
    
     )
+     
+     
+     
+     
+     
+      var db = req.db;
+    var collection = db.get('grid');
+    
+   
+       collection.find({},{},function(e,docs){
+           var doc = { usercollection : docs };
+           //console.log(docs)
+          
+           //res.render('ajax', {docs: JSON.stringify(docs), title: 'Test'});
+    res.send(doc);
+     
+        });
+     
+     
      
      
      

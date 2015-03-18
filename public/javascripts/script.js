@@ -7,22 +7,25 @@ var cCol = 15;
 var cColor = 164;
 //influence: true = light   false = dark
 var influence = true;
+
+var updateInterval;    
+    
     
 refreshLocal(); 
     
     
-     setInterval(function()
+   /*  setInterval(function()
             {
     
         $.ajax({
-            //url: 'http://localhost:5000/ajax',
-            url: 'http://tonality.herokuapp.com/ajax',
+            url: 'http://localhost:5000/ajax',
+            //url: 'http://tonality.herokuapp.com/ajax',
             dataType: "json",
             jsonpCallback: "_testcb",
             cache: false,
             timeout: 5000,
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 
                 var test = data['usercollection'];
                 //console.log (test);
@@ -45,7 +48,7 @@ refreshLocal();
             }
         });
          
-      },200);
+      },600);*/
          
     
     $(document).keydown(function(e)
@@ -77,29 +80,79 @@ refreshLocal();
          }   
          if (e.keyCode == 38) { 
          
-             cRow--;
-             refreshLocal();
-             $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+             //updateInterval = setInterval(function(){ updateGrid() }, 500);
              
-           $.ajax({ 
-           //url: 'http://localhost:5000/modify',
-            url: 'http://tonality.herokuapp.com/modify',
-               
-           type: 'POST',
-           cache: false, 
-                 
-            dataType: "json",
-           data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
-           success: function(data){
-              console.log(data)
-           }
-           , error: function(jqXHR, textStatus, err){
-               alert('text status '+textStatus+', err '+err)
-           }
-        })
-        
-             
-         
+            // function updateGrid() {
+                                     cRow--;
+                                     refreshLocal();
+                                     $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+
+                                   $.ajax({ 
+                                   url: 'http://localhost:5000/modify',
+                                   // url: 'http://tonality.herokuapp.com/modify',
+
+                                   type: 'POST',
+                                   cache: false, 
+
+                                    dataType: "json",
+                                   data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
+                                   success: function(data){
+                                     // console.log(data)
+                                       
+                                       var test = data['usercollection'];
+                                        //console.log (test);
+                                     for (var i = 0; i<900; i++){    
+                                        var test2 = test[i];
+                                        //console.log(test2['_id']);
+
+                                         if (test2['row'] == cRow && test2['col'] == cCol){
+
+                                         }else{
+
+                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+
+                                         }
+                                     }
+
+                                       
+                                       
+                                   }
+                                   , error: function(jqXHR, textStatus, err){
+                                       alert('text status '+textStatus+', err '+err)
+                                   }
+                                })
+
+                                   /*  $.ajax({
+                                    url: 'http://localhost:5000/ajax',
+                                    //url: 'http://tonality.herokuapp.com/ajax',
+                                    dataType: "json",
+                                    jsonpCallback: "_testcb",
+                                    cache: false,
+                                    timeout: 5000,
+                                    success: function(data) {
+                                        //console.log(data);
+
+                                        var test = data['usercollection'];
+                                        //console.log (test);
+                                     for (var i = 0; i<900; i++){    
+                                        var test2 = test[i];
+                                        //console.log(test2['_id']);
+
+                                         if (test2['row'] == cRow && test2['col'] == cCol){
+
+                                         }else{
+
+                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+
+                                         }
+                                     }
+
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        alert('error ' + textStatus + " " + errorThrown);
+                                    }
+                                }); */
+           //  }
          }   // up arrow
          if (e.keyCode == 39) { 
          
@@ -145,7 +198,15 @@ refreshLocal();
                         });
                  }*/
         
- });
+        });
+    
+/*    $(document).keyup(function(e)
+    {
+         if (e.keyCode == 38) {
+            console.log("upkey released"); 
+            clearInterval(updateInterval);
+         }
+    });*/
   
     
     
