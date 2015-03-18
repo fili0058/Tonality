@@ -18,8 +18,8 @@ refreshLocal();
     setInterval(function()
             {
                         $.ajax({ 
-                            url: 'http://localhost:5000/modify',
-                            //        url: 'http://tonality.herokuapp.com/modify',
+                        //    url: 'http://localhost:5000/modify',
+                         url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -84,8 +84,8 @@ refreshLocal();
             
             
             $.ajax({ 
-                url: 'http://localhost:5000/modify',
-                            //        url: 'http://tonality.herokuapp.com/modify',
+            //    url: 'http://localhost:5000/modify',
+             url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -130,8 +130,8 @@ refreshLocal();
                                      $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
 
                                    $.ajax({ 
-                                       url: 'http://localhost:5000/modify',
-                            //        url: 'http://tonality.herokuapp.com/modify',
+                                   //    url: 'http://localhost:5000/modify',
+                          url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -205,8 +205,8 @@ refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
              
              $.ajax({ 
-                 url: 'http://localhost:5000/modify',
-                            //        url: 'http://tonality.herokuapp.com/modify',
+             //    url: 'http://localhost:5000/modify',
+              url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -251,8 +251,8 @@ refreshLocal();
                               
                                
                                $.ajax({ 
-                                   url: 'http://localhost:5000/modify',
-                            //        url: 'http://tonality.herokuapp.com/modify',
+                               //    url: 'http://localhost:5000/modify',
+                              url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
