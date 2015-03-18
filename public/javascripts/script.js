@@ -14,41 +14,45 @@ var updateInterval;
 refreshLocal(); 
     
     
-   /*  setInterval(function()
+    setInterval(function()
             {
-    
-        $.ajax({
-            url: 'http://localhost:5000/ajax',
-            //url: 'http://tonality.herokuapp.com/ajax',
-            dataType: "json",
-            jsonpCallback: "_testcb",
-            cache: false,
-            timeout: 5000,
-            success: function(data) {
-                //console.log(data);
-                
-                var test = data['usercollection'];
-                //console.log (test);
-             for (var i = 0; i<900; i++){    
-                var test2 = test[i];
-                //console.log(test2['_id']);
+                        $.ajax({ 
+                                   //url: 'http://localhost:5000/modify',
+                                    url: 'http://tonality.herokuapp.com/modify',
 
-                 if (test2['row'] == cRow && test2['col'] == cCol){
-                     
-                 }else{
-                 
-                $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
-                     
-                 }
-             }
+                                   type: 'POST',
+                                   cache: false, 
 
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('error ' + textStatus + " " + errorThrown);
-            }
-        });
+                                    dataType: "json",
+                                   
+                                   success: function(data){
+                                     // console.log(data)
+                                       
+                                       var test = data['usercollection'];
+                                        //console.log (test);
+                                     for (var i = 0; i<900; i++){    
+                                        var test2 = test[i];
+                                        //console.log(test2['_id']);
+
+                                         if (test2['row'] == cRow && test2['col'] == cCol){
+
+                                         }else{
+
+                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+
+                                         }
+                                     }
+
+                                       
+                                       
+                                   }
+                                   , error: function(jqXHR, textStatus, err){
+                                       alert('text status '+textStatus+', err '+err)
+                                   }
+                                })
+        
          
-      },600);*/
+      },300);
          
     
     $(document).keydown(function(e)
@@ -99,7 +103,7 @@ refreshLocal();
                                    success: function(data){
                                      // console.log(data)
                                        
-                                       var test = data['usercollection'];
+                                      /* var test = data['usercollection'];
                                         //console.log (test);
                                      for (var i = 0; i<900; i++){    
                                         var test2 = test[i];
@@ -113,7 +117,7 @@ refreshLocal();
 
                                          }
                                      }
-
+*/
                                        
                                        
                                    }
@@ -219,6 +223,38 @@ refreshLocal();
 
 
 
+
+
+/*$.ajax({
+            url: 'http://localhost:5000/ajax',
+            //url: 'http://tonality.herokuapp.com/ajax',
+            dataType: "json",
+            jsonpCallback: "_testcb",
+            cache: false,
+            timeout: 5000,
+            success: function(data) {
+                //console.log(data);
+                
+                var test = data['usercollection'];
+                //console.log (test);
+             for (var i = 0; i<900; i++){    
+                var test2 = test[i];
+                //console.log(test2['_id']);
+
+                 if (test2['row'] == cRow && test2['col'] == cCol){
+                     
+                 }else{
+                 
+                $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+                     
+                 }
+             }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('error ' + textStatus + " " + errorThrown);
+            }
+        });*/
 
 
 
