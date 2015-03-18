@@ -97,22 +97,22 @@ refreshLocal();
                                      refreshLocal();
                                      $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
 
-                                   $.ajax({ 
-                               url: 'http://localhost:5000/modify',
-                           // url: 'http://tonality.herokuapp.com/modify',
+                   $.ajax({ 
+            //   url: 'http://localhost:5000/modify',
+           url: 'http://tonality.herokuapp.com/modify',
 
-                                   type: 'POST',
-                                   cache: false, 
+                   type: 'POST',
+                   cache: false, 
 
-                                    dataType: "json",
-                                   data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
-                                   success: function(data){
-                                       
-                                   }
-                                   , error: function(jqXHR, textStatus, err){
-                                       alert('text status '+textStatus+', err '+err)
-                                   }
-                                })
+                    dataType: "json",
+                   data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
+                   success: function(data){
+
+                   }
+                   , error: function(jqXHR, textStatus, err){
+                       alert('text status '+textStatus+', err '+err)
+                   }
+                })
                                    
                     }
          }   // up arrow
