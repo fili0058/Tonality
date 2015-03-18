@@ -18,8 +18,8 @@ refreshLocal();
     setInterval(function()
             {
                         $.ajax({ 
-                        //    url: 'http://localhost:5000/modify',
-                         url: 'http://tonality.herokuapp.com/modify',
+//                            url: 'http://localhost:5000/modify',
+        url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -77,6 +77,9 @@ refreshLocal();
         }
     });
     */
+            
+    if (cCol > 1){
+        
             cCol--;
                                refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
@@ -84,8 +87,8 @@ refreshLocal();
             
             
             $.ajax({ 
-            //    url: 'http://localhost:5000/modify',
-             url: 'http://tonality.herokuapp.com/modify',
+//                url: 'http://localhost:5000/modify',
+        url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -118,20 +121,23 @@ refreshLocal();
                                    }
                                 })
             
-             
+                }
          }   
          if (e.keyCode == 38) { 
          
              //updateInterval = setInterval(function(){ updateGrid() }, 500);
              
             // function updateGrid() {
+             
+                    if (cRow > 1){
+                        
                                      cRow--;
                                      refreshLocal();
                                      $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
 
                                    $.ajax({ 
-                                   //    url: 'http://localhost:5000/modify',
-                          url: 'http://tonality.herokuapp.com/modify',
+                                //       url: 'http://localhost:5000/modify',
+                            //: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -195,18 +201,21 @@ refreshLocal();
                                     }
                                 }); */
            //  }
+                                   
+                                   
+                    }
          }   // up arrow
          if (e.keyCode == 39) { 
          
-
+            if (cCol < 30){
              
               cCol++;
                                refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
              
              $.ajax({ 
-             //    url: 'http://localhost:5000/modify',
-              url: 'http://tonality.herokuapp.com/modify',
+//                 url: 'http://localhost:5000/modify',
+        url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -242,17 +251,21 @@ refreshLocal();
              
              //console.log("right");
          
+             
+            }
          }   // right arrow
          if (e.keyCode == 40) { console.log("down");
                               
+                            if (cRow < 30){
+                                
                               cRow++;
                                refreshLocal();
                                $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
                               
                                
                                $.ajax({ 
-                               //    url: 'http://localhost:5000/modify',
-                              url: 'http://tonality.herokuapp.com/modify',
+                            //       url: 'http://localhost:5000/modify',
+                            url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -286,7 +299,7 @@ refreshLocal();
                                 })
                                
                                
-                               
+                                    }
                               }   // down arrow 
         
          if (e.keyCode == 32) { console.log("space"); 
