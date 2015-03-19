@@ -20,7 +20,7 @@ refreshLocal();
     
 
                         $.ajax({ 
-                        // url: 'http://localhost:5000/refresh',
+                        //url: 'http://localhost:5000/refresh',
                           url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
@@ -68,38 +68,7 @@ refreshLocal();
                                refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
             
-            
-            
-            $.ajax({ 
-              //  url: 'http://localhost:5000/modify',
-              url: 'http://tonality.herokuapp.com/modify',
-
-                                   type: 'POST',
-                                   cache: false, 
-
-                                    dataType: "json",
-                                   data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
-                                   success: function(data){
-                                       //console.log(data);
-                                       var test = data['usercollection'];
-                                        //console.log (test);
-                                     for (var i = 0; i<900; i++){    
-                                        var test2 = test[i];
-                                        //console.log(test2['_id']);
-
-                                         if (test2['row'] == cRow && test2['col'] == cCol){
-
-                                         }else{
-
-                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
-
-                                         }
-                                     }
-
-                                   }, error: function(jqXHR, textStatus, err){
-                                       alert('text status '+textStatus+', err '+err)
-                                   }
-                                })
+            modifyDatabase();
             
                 }
          }   
@@ -111,38 +80,7 @@ refreshLocal();
                                      refreshLocal();
                                      $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
 
-                   $.ajax({ 
-              // url: 'http://localhost:5000/modify',
-               url: 'http://tonality.herokuapp.com/modify',
-
-                   type: 'POST',
-                   cache: false, 
-
-                    dataType: "json",
-                   data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
-                   success: function(data){
-                        //console.log(data);
-                         var test = data['usercollection'];
-                                        //console.log (test);
-                                     for (var i = 0; i<900; i++){    
-                                        var test2 = test[i];
-                                        //console.log(test2['_id']);
-
-                                         if (test2['row'] == cRow && test2['col'] == cCol){
-
-                                         }else{
-
-                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
-
-                                         }
-                                     }
-
-                                       
-                                       
-                                   }, error: function(jqXHR, textStatus, err){
-                                       alert('text status '+textStatus+', err '+err)
-                                   }
-                                })
+                  modifyDatabase();
                        
                        
                                    
@@ -156,38 +94,9 @@ refreshLocal();
                                refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
              
-             $.ajax({ 
-                 //url: 'http://localhost:5000/modify',
-                url: 'http://tonality.herokuapp.com/modify',
-
-                                   type: 'POST',
-                                   cache: false, 
-
-                                    dataType: "json",
-                                   data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
-                                   success: function(data){
-                                       var test = data['usercollection'];
-                                        //console.log (test);
-                                     for (var i = 0; i<900; i++){    
-                                        var test2 = test[i];
-                                        //console.log(test2['_id']);
-
-                                         if (test2['row'] == cRow && test2['col'] == cCol){
-
-                                         }else{
-
-                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
-
-                                         }
-                                     }
-
-                                   }, error: function(jqXHR, textStatus, err){
-                                       alert('text status '+textStatus+', err '+err)
-                                   }
-                                })
-             //console.log("right");
-         
-             
+            modifyDatabase();
+                
+                
             }
          }   // right arrow
          if (e.keyCode == 40) { console.log("down");
@@ -198,7 +107,52 @@ refreshLocal();
                                refreshLocal();
                                $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
                               
+                  
+                                modifyDatabase();
                                
+                                    }
+                              }   // down arrow 
+        
+         if (e.keyCode == 32) { 
+             //console.log("space"); 
+                              
+                               changeColor();
+                               refreshLocal();
+                              }
+         if (e.keyCode == 13) { 
+                     //console.log("enter");
+                 if (influence == true){
+                     influence = false;
+                 }else{
+                     influence = true;
+                 }
+         
+         }
+        
+        
+        /*if (e.keyCode == 48) { console.log("new grid"); 
+
+                        $.ajax({
+                                url: 'http://localhost:5000/newgrid',
+                               // url: 'http://tonality.herokuapp.com/newgrid',
+                                dataType: "text",
+                                jsonpCallback: "_testcb",
+                                cache: false,
+                                timeout: 5000,
+                                success: function(data) {
+                                    console.log(data);
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    alert('error ' + textStatus + " " + errorThrown);
+                                }
+                        });
+                 }*/
+        
+        });
+    
+        function modifyDatabase(){
+         
+                         
                    $.ajax({ 
                 //url: 'http://localhost:5000/modify',
             url: 'http://tonality.herokuapp.com/modify',
@@ -228,39 +182,9 @@ refreshLocal();
                            alert('text status '+textStatus+', err '+err)
                        }
                     })
-
-                               
-                                    }
-                              }   // down arrow 
-        
-         if (e.keyCode == 32) { console.log("space"); 
-                              
-                               changeColor();
-                               refreshLocal();
-                              }
-         if (e.keyCode == 13) { console.log("enter"); }
-        
-        
-        /*if (e.keyCode == 48) { console.log("new grid"); 
-
-                        $.ajax({
-                                url: 'http://localhost:5000/newgrid',
-                               // url: 'http://tonality.herokuapp.com/newgrid',
-                                dataType: "text",
-                                jsonpCallback: "_testcb",
-                                cache: false,
-                                timeout: 5000,
-                                success: function(data) {
-                                    console.log(data);
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    alert('error ' + textStatus + " " + errorThrown);
-                                }
-                        });
-                 }*/
-        
-        });
-    
+            
+            
+        }
   
     
     function refreshLocal(){

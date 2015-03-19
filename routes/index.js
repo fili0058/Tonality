@@ -99,35 +99,59 @@ router.get('/newgrid', function(req, res) {
            //console.log(docs)
         var findHue = docs['0'];
             var databaseHue = findHue['hue'];
+             var databaseLum = findHue['lum'];
+         
          //var numHue = Math.floor(databaseHue);
-         var averageHue = (databaseHue + browserHueNum);
-        var  averageHue2 = averageHue / 2;
+         var averageHue = (databaseHue + browserHueNum) /2;
+        //var  averageHue2 = averageHue / 2;
          //var numHue2 = Math.floor(averageHue);
         
-        setHue(averageHue2);
-    
+        setHue(averageHue);
+        calculateLum(databaseLum);
      
         });
     // var averageHueNum = Math.floor(averageHue);
-    
-    
+    var browserLight = req.body['light'];
+     console.log(browserLight);
+     
+    var modifyHue
+     function setHue(intoVar){
+         modifyHue = intoVar;
+     }
+     
      
      //var currentHue = found.body['hue'];
      //console.log(done);
      
-     var browserLight = req.body['light'];
-     //res.send(browserLight);
+     function calculateLum(dataLum){
+        
+         if (browserLight == 'true'){
+         var newLum = dataLum + 10;
+             if (newLum < 100){
+         setNewColor(modifyHue, newLum);
+             }
+         }else{
+             
+            newLum = dataLum - 10;
+             if (newLum > 0){
+         setNewColor(modifyHue, newLum);
+             }
+         }
+     }
+    
+     
+     
      
      //var db = req.db;
     //var collection = db.get('grid');     
-    function setHue(hueToSet){
-     console.log(hueToSet);
-     
+    function setNewColor(hueToSet, lumToSet){
+     //console.log(hueToSet);
+     //console.log(lumToSet);
      collection.update(
         { "row": queryRow, "col": queryCol },
             { 
             $set: 
-                { hue: hueToSet }
+                { hue: hueToSet, lum: lumToSet }
             }
    
             )
