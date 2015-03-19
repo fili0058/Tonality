@@ -14,6 +14,8 @@ router.get('/newgrid', function(req, res) {
     var collection = db.get('grid');
     
     
+    
+    
    for( var f=1; f<31; f++ ){
     
         for(var i=1; i<31; i++ ){
@@ -134,9 +136,28 @@ router.get('/newgrid', function(req, res) {
      
      
      
+       collection.find({},{},function(e,docs){
+           var doc = { usercollection : docs };
+           //console.log(docs)
+          
+           //res.render('ajax', {docs: JSON.stringify(docs), title: 'Test'});
+    res.send(doc);
      
+        });
     
    
+     
+     
+     
+       //req.body['field1']
+});
+
+router.post('/refresh', function (req, res){
+
+    var db = req.db;
+    var collection = db.get('grid');
+
+
        collection.find({},{},function(e,docs){
            var doc = { usercollection : docs };
            //console.log(docs)
@@ -147,10 +168,6 @@ router.get('/newgrid', function(req, res) {
         });
      
      
-     
-     
-     
-       //req.body['field1']
 });
 
 

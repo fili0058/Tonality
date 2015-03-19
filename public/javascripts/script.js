@@ -5,6 +5,7 @@ $(document).ready(function() {
 var cRow = 15;
 var cCol = 15;
 var cColor = "blue";
+var cColorNum = 196;
 var colorNum = Math.floor((Math.random() * 4) + 0);
     changeColor();
     console.log(colorNum);
@@ -17,19 +18,18 @@ var updateInterval;
 refreshLocal(); 
     
     
-    setInterval(function()
-            {
+
                         $.ajax({ 
-                           // url: 'http://localhost:5000/modify',
-                            url: 'http://tonality.herokuapp.com/modify',
+                        // url: 'http://localhost:5000/refresh',
+                          url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
                                    cache: false, 
 
                                     dataType: "json",
-                                   data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence },
+                                  //data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence },
                                    success: function(data){
-                                     console.log(data)
+                                     //console.log(data);
                                        
                                        var test = data['usercollection'];
                                         //console.log (test);
@@ -54,7 +54,7 @@ refreshLocal();
                                    }
                                 })
         
-      },300);
+      
          
     
     $(document).keydown(function(e)
@@ -71,7 +71,7 @@ refreshLocal();
             
             
             $.ajax({ 
-                //url: 'http://localhost:5000/modify',
+              //  url: 'http://localhost:5000/modify',
               url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
@@ -80,9 +80,23 @@ refreshLocal();
                                     dataType: "json",
                                    data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
                                    success: function(data){
-                                       
-                                   }, 
-                                    error: function(jqXHR, textStatus, err){
+                                       //console.log(data);
+                                       var test = data['usercollection'];
+                                        //console.log (test);
+                                     for (var i = 0; i<900; i++){    
+                                        var test2 = test[i];
+                                        //console.log(test2['_id']);
+
+                                         if (test2['row'] == cRow && test2['col'] == cCol){
+
+                                         }else{
+
+                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+
+                                         }
+                                     }
+
+                                   }, error: function(jqXHR, textStatus, err){
                                        alert('text status '+textStatus+', err '+err)
                                    }
                                 })
@@ -98,8 +112,8 @@ refreshLocal();
                                      $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
 
                    $.ajax({ 
-               url: 'http://localhost:5000/modify',
-                //url: 'http://tonality.herokuapp.com/modify',
+              // url: 'http://localhost:5000/modify',
+               url: 'http://tonality.herokuapp.com/modify',
 
                    type: 'POST',
                    cache: false, 
@@ -107,12 +121,30 @@ refreshLocal();
                     dataType: "json",
                    data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
                    success: function(data){
+                        //console.log(data);
+                         var test = data['usercollection'];
+                                        //console.log (test);
+                                     for (var i = 0; i<900; i++){    
+                                        var test2 = test[i];
+                                        //console.log(test2['_id']);
 
-                   }
-                   , error: function(jqXHR, textStatus, err){
-                       alert('text status '+textStatus+', err '+err)
-                   }
-                })
+                                         if (test2['row'] == cRow && test2['col'] == cCol){
+
+                                         }else{
+
+                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+
+                                         }
+                                     }
+
+                                       
+                                       
+                                   }, error: function(jqXHR, textStatus, err){
+                                       alert('text status '+textStatus+', err '+err)
+                                   }
+                                })
+                       
+                       
                                    
                     }
          }   // up arrow
@@ -125,7 +157,7 @@ refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
              
              $.ajax({ 
-                // url: 'http://localhost:5000/modify',
+                 //url: 'http://localhost:5000/modify',
                 url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
@@ -134,9 +166,22 @@ refreshLocal();
                                     dataType: "json",
                                    data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
                                    success: function(data){
-                                       
-                                   }
-                                   , error: function(jqXHR, textStatus, err){
+                                       var test = data['usercollection'];
+                                        //console.log (test);
+                                     for (var i = 0; i<900; i++){    
+                                        var test2 = test[i];
+                                        //console.log(test2['_id']);
+
+                                         if (test2['row'] == cRow && test2['col'] == cCol){
+
+                                         }else{
+
+                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+
+                                         }
+                                     }
+
+                                   }, error: function(jqXHR, textStatus, err){
                                        alert('text status '+textStatus+', err '+err)
                                    }
                                 })
@@ -155,8 +200,8 @@ refreshLocal();
                               
                                
                    $.ajax({ 
-            //  url: 'http://localhost:5000/modify',
-               url: 'http://tonality.herokuapp.com/modify',
+                //url: 'http://localhost:5000/modify',
+            url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
                        cache: false, 
@@ -164,9 +209,22 @@ refreshLocal();
                         dataType: "json",
                        data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
                        success: function(data){
+                           var test = data['usercollection'];
+                                        //console.log (test);
+                                     for (var i = 0; i<900; i++){    
+                                        var test2 = test[i];
+                                        //console.log(test2['_id']);
 
-                       }
-                       , error: function(jqXHR, textStatus, err){
+                                         if (test2['row'] == cRow && test2['col'] == cCol){
+
+                                         }else{
+
+                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+
+                                         }
+                                     }
+
+                       }, error: function(jqXHR, textStatus, err){
                            alert('text status '+textStatus+', err '+err)
                        }
                     })
@@ -183,11 +241,11 @@ refreshLocal();
          if (e.keyCode == 13) { console.log("enter"); }
         
         
-        if (e.keyCode == 48) { console.log("new grid"); 
+        /*if (e.keyCode == 48) { console.log("new grid"); 
 
                         $.ajax({
-                               // url: 'http://localhost:5000/newgrid',
-                                url: 'http://tonality.herokuapp.com/left',
+                                url: 'http://localhost:5000/newgrid',
+                               // url: 'http://tonality.herokuapp.com/newgrid',
                                 dataType: "text",
                                 jsonpCallback: "_testcb",
                                 cache: false,
@@ -201,12 +259,12 @@ refreshLocal();
                         });
                  }
         
-        });
+        });*/
     
   
     
     function refreshLocal(){
-    $('section:nth-of-type(' + cRow+ ') div:nth-of-type(' + cCol + ')').css("background-color", 'hsl(' + cColor + ', 60%, 50%)').css("box-shadow", '0 0 13px' );
+    $('section:nth-of-type(' + cRow+ ') div:nth-of-type(' + cCol + ')').css("background-color", 'hsl(' + cColorNum + ', 60%, 50%)').css("box-shadow", '0 0 13px' );
 }
     
        
@@ -215,17 +273,30 @@ refreshLocal();
         
         if (colorNum == 1){
             cColor = "green";
+            cColorNum = 164;
         }else if (colorNum == 2){
             cColor = "orange";
+            cColorNum = 5;
         }else if (colorNum == 3){
             cColor = "pink";
+            cColorNum = 347;
         }else if (colorNum == 4){
             cColor = "blue";
+            cColorNum = 196;
             colorNum = 0;
         }
         
     }
-    
+     
+    if (browserHue == "blue"){
+         browserHueNum = 196;
+     }else if (browserHue == "green"){
+         browserHueNum = 164;
+     }else if (browserHue == "orange"){
+         browserHueNum = 5;
+     }else if (browserHue == "pink"){
+        browserHueNum = 347;
+     }
     
     
     
