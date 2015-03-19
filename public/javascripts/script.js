@@ -20,7 +20,7 @@ refreshLocal();
     
 
                         $.ajax({ 
-                        //url: 'http://localhost:5000/refresh',
+                       // url: 'http://localhost:5000/refresh',
                           url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
@@ -54,40 +54,75 @@ refreshLocal();
                                    }
                                 })
         
-      
-         
+    var leftKey;  
+    var leftOn = 1;   
+    var rightKey;  
+    var rightOn = 1; 
+    var upKey;  
+    var upOn = 1; 
+    var downKey;  
+    var downOn = 1; 
     
     $(document).keydown(function(e)
     {
         // left arrow
         if (e.keyCode == 37) {
-            
-    if (cCol > 1){
+               
+    if (leftOn == 1){
         
-            cCol--;
+            leftOn++; 
+        if (cCol > 1){
+                cCol--;
                                refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
-            
             modifyDatabase();
+                }
+        
+            leftKey = setInterval(function(){
+                if (cCol > 1){
+                cCol--;
+                               refreshLocal();
+                               $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+            modifyDatabase();
+                }
+                
+            }, 100);  
             
                 }
          }   
          if (e.keyCode == 38) { 
-             
-                    if (cRow > 1){
-                        
+             if (upOn == 1){
+                 upOn++;
+                  if (cRow > 1){              
                                      cRow--;
                                      refreshLocal();
                                      $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
-
                   modifyDatabase();
-                       
-                       
-                                   
+        
                     }
+             upKey = setInterval(function(){
+                         if (cRow > 1){
+
+                                                 cRow--;
+                                                 refreshLocal();
+                                                 $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                              modifyDatabase();
+                                }
+                  }, 100); 
+             }
          }   // up arrow
          if (e.keyCode == 39) { 
-         
+         if (rightOn == 1){
+                 rightOn++;
+             if (cCol < 30){
+             
+              cCol++;
+                               refreshLocal();
+                               $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+            modifyDatabase();
+            }
+             
+        rightKey = setInterval(function(){     
             if (cCol < 30){
              
               cCol++;
@@ -95,23 +130,32 @@ refreshLocal();
                                $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
              
             modifyDatabase();
-                
-                
+            }
+                }, 100); 
             }
          }   // right arrow
-         if (e.keyCode == 40) { console.log("down");
-                              
-                            if (cRow < 30){
+         if (e.keyCode == 40) { //console.log("down");
+                      if (downOn == 1){
+                            downOn++;         
+                           if (cRow < 30){
                                 
                               cRow++;
                                refreshLocal();
                                $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
-                              
-                  
-                                modifyDatabase();
-                               
-                                    }
-                              }   // down arrow 
+                                modifyDatabase();   
+                            }
+                          
+                    downKey = setInterval(function(){      
+                          if (cRow < 30){
+                                
+                              cRow++;
+                               refreshLocal();
+                               $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                                modifyDatabase();   
+                            }
+                         }, 100);  
+                      }
+                }   // down arrow 
         
          if (e.keyCode == 32) { 
              //console.log("space"); 
@@ -150,11 +194,39 @@ refreshLocal();
         
         });
     
+    
+    $(document).keyup(function(e)
+    {
+        // left arrow
+        if (e.keyCode == 37) {
+        //console.log("leftKey up");
+            clearInterval(leftKey);
+            leftOn = 1;
+        }
+    
+        if (e.keyCode == 38) { 
+            clearInterval(upKey);
+            upOn = 1;
+        }
+            
+         if (e.keyCode == 39) { 
+             clearInterval(rightKey);
+            rightOn = 1;
+         }
+             
+         if (e.keyCode == 40) { 
+             clearInterval(downKey);
+            downOn = 1;
+         }
+    });
+                      
+                      
+    
         function modifyDatabase(){
          
                          
                    $.ajax({ 
-                //url: 'http://localhost:5000/modify',
+           // url: 'http://localhost:5000/modify',
             url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
