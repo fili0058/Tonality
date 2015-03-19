@@ -32,19 +32,19 @@ div{
     padding-bottom: 2.6%;
     margin: 0.35%;
     float: left;
-    transition: background-color .3s, box-shadow .3s;
+    
 }
 
 /*box-shadow: 0 0 20px hsl(196, 100%, 50%);*/
 
 /*.row1 div {
-    background: hsl(196, 60%, 50%);
+    background: hsl(196, 60%, 50%);    blue
 }
 .row2 div {
-    background: hsl(164, 60%, 50%);
+    background: hsl(164, 60%, 50%);     green
 }
 .row3 div {
-    background: hsl(5, 60%, 50%);
+    background: hsl(5, 60%, 50%);       orange
 }
 .row4 div {
-    background: hsl(347, 60%, 50%);*/
+    background: hsl(347, 60%, 50%);     pink     */

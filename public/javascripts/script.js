@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 var cRow = 15;
 var cCol = 15;
-var cColor = 196;
+var cColor = "blue";
 var colorNum = Math.floor((Math.random() * 4) + 0);
     changeColor();
     console.log(colorNum);
@@ -20,16 +20,16 @@ refreshLocal();
     setInterval(function()
             {
                         $.ajax({ 
-                            //url: 'http://localhost:5000/modify',
+                           // url: 'http://localhost:5000/modify',
                             url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
 
                                     dataType: "json",
-                                   
+                                   data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence },
                                    success: function(data){
-                                     // console.log(data)
+                                     console.log(data)
                                        
                                        var test = data['usercollection'];
                                         //console.log (test);
@@ -72,7 +72,7 @@ refreshLocal();
             
             $.ajax({ 
                 //url: 'http://localhost:5000/modify',
-                url: 'http://tonality.herokuapp.com/modify',
+              url: 'http://tonality.herokuapp.com/modify',
 
                                    type: 'POST',
                                    cache: false, 
@@ -98,8 +98,8 @@ refreshLocal();
                                      $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
 
                    $.ajax({ 
-            //   url: 'http://localhost:5000/modify',
-           url: 'http://tonality.herokuapp.com/modify',
+               url: 'http://localhost:5000/modify',
+                //url: 'http://tonality.herokuapp.com/modify',
 
                    type: 'POST',
                    cache: false, 
@@ -155,8 +155,8 @@ refreshLocal();
                               
                                
                    $.ajax({ 
-            //    url: 'http://localhost:5000/modify',
-                url: 'http://tonality.herokuapp.com/modify',
+            //  url: 'http://localhost:5000/modify',
+               url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
                        cache: false, 
@@ -183,11 +183,11 @@ refreshLocal();
          if (e.keyCode == 13) { console.log("enter"); }
         
         
-       /* if (e.keyCode == 48) { console.log("new grid"); 
+        if (e.keyCode == 48) { console.log("new grid"); 
 
                         $.ajax({
-                                url: 'http://localhost:5000/newgrid',
-                                //url: 'http://tonality.herokuapp.com/left',
+                               // url: 'http://localhost:5000/newgrid',
+                                url: 'http://tonality.herokuapp.com/left',
                                 dataType: "text",
                                 jsonpCallback: "_testcb",
                                 cache: false,
@@ -199,7 +199,7 @@ refreshLocal();
                                     alert('error ' + textStatus + " " + errorThrown);
                                 }
                         });
-                 }*/
+                 }
         
         });
     
@@ -214,13 +214,13 @@ refreshLocal();
         colorNum++;
         
         if (colorNum == 1){
-            cColor = 164;
+            cColor = "green";
         }else if (colorNum == 2){
-            cColor = 5;
+            cColor = "orange";
         }else if (colorNum == 3){
-            cColor = 347;
+            cColor = "pink";
         }else if (colorNum == 4){
-            cColor = 196;
+            cColor = "blue";
             colorNum = 0;
         }
         

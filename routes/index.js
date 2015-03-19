@@ -41,7 +41,11 @@ router.get('/newgrid', function(req, res) {
    //console.log('req received');
     //var newstring = newnew.toString();
    //res.send(newstring);
+    
+      var db = req.db;
+    var collection = db.get('grid');
 
+     
      var browserRow = req.body['localRow'];
      //res.send(browserRow);
      var queryRow = Math.floor(browserRow);
@@ -51,30 +55,86 @@ router.get('/newgrid', function(req, res) {
      var queryCol = Math.floor(browserCol);
      
       var browserHue = req.body['localHue'];
-     //res.send(browserHue);
-     var newHue = Math.floor(browserHue);
+     var browserHueNum = 196;
+    
+     if (browserHue == "blue"){
+         browserHueNum = 196;
+     }else if (browserHue == "green"){
+         browserHueNum = 164;
+     }else if (browserHue == "orange"){
+         browserHueNum = 5;
+     }else if (browserHue == "pink"){
+        browserHueNum = 347;
+     }
      
-      var browserLight = req.body['light'];
+     
+    
+     
+     //console.log(browserHueNum);
+     //res.send(browserHue);
+     //var newHue = parseInt(' " ' + browserHue + ' " ');
+     
+     //var found = collection.find( { "row": 15, "col": 15  }, { } );
+    //var myName = found.hue;
+    //var done = tojson(myName);
+     //var item = found['hue'];
+     //var item2 = item['hue'];
+     //var item3 = found['hue'];
+    // console.log(item);
+     //console.log(item2);
+     //console.log(item3);
+     
+   /*  var callback = function(err, doc) {
+    if (err) {
+      console.log(err);
+    }
+    averageHue = doc[0];
+    console.log(averageHue); 
+}; */
+     
+     collection.find({ "row": queryRow, "col": queryCol },{},function(e,docs){
+           var doc = { usercollection : docs };
+           //console.log(docs)
+        var findHue = docs['0'];
+            var databaseHue = findHue['hue'];
+         //var numHue = Math.floor(databaseHue);
+         var averageHue = (databaseHue + browserHueNum);
+        var  averageHue2 = averageHue / 2;
+         //var numHue2 = Math.floor(averageHue);
+        
+        setHue(averageHue2);
+    
+     
+        });
+    // var averageHueNum = Math.floor(averageHue);
+    
+    
+     
+     //var currentHue = found.body['hue'];
+     //console.log(done);
+     
+     var browserLight = req.body['light'];
      //res.send(browserLight);
      
-     var db = req.db;
-    var collection = db.get('grid');     
+     //var db = req.db;
+    //var collection = db.get('grid');     
+    function setHue(hueToSet){
+     console.log(hueToSet);
      
      collection.update(
         { "row": queryRow, "col": queryCol },
             { 
             $set: 
-                { hue: newHue }
+                { hue: hueToSet }
             }
    
-    )
+            )
+     
+    }
      
      
      
      
-     
-      var db = req.db;
-    var collection = db.get('grid');
     
    
        collection.find({},{},function(e,docs){
