@@ -257,9 +257,9 @@ refreshLocal();
                                     alert('error ' + textStatus + " " + errorThrown);
                                 }
                         });
-                 }
+                 }*/
         
-        });*/
+        });
     
   
     
@@ -288,15 +288,6 @@ refreshLocal();
         
     }
      
-    if (browserHue == "blue"){
-         browserHueNum = 196;
-     }else if (browserHue == "green"){
-         browserHueNum = 164;
-     }else if (browserHue == "orange"){
-         browserHueNum = 5;
-     }else if (browserHue == "pink"){
-        browserHueNum = 347;
-     }
     
     
     
