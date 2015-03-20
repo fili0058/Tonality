@@ -8,13 +8,10 @@ router.get('/', function(req, res, next) {
 });
 
 
-
-router.get('/newgrid', function(req, res) {
+//makes a new grid on the database - all blue squares
+/*router.get('/newgrid', function(req, res) {
       var db = req.db;
     var collection = db.get('grid');
-    
-    
-    
     
    for( var f=1; f<31; f++ ){
     
@@ -28,32 +25,20 @@ router.get('/newgrid', function(req, res) {
         }
     }
     res.send("new grid")
-});
-
-
-
-
-
+});*/
+    //router that modifies the database with the new color
  router.post('/modify', function (req, res){
-//var newvalue = req.body['field1'];
-    //   Math.floor(newvalue);
-       //var newnew = 9;
-       //newnew += 10;
-   //console.log(req.body);
-   //console.log('req received');
-    //var newstring = newnew.toString();
-   //res.send(newstring);
-    
-      var db = req.db;
+   
+     //require the database as a variable
+    var db = req.db;
     var collection = db.get('grid');
 
+     //set all the important variables from the ajax post and make sure they are numbers
      
      var browserRow = req.body['localRow'];
-     //res.send(browserRow);
      var queryRow = Math.floor(browserRow);
      
      var browserCol = req.body['localCol'];
-     //res.send(browserCol);
      var queryCol = Math.floor(browserCol);
      
       var browserHue = req.body['localHue'];
@@ -69,113 +54,67 @@ router.get('/newgrid', function(req, res) {
         browserHueNum = 347;
      }
      
-     
-    
-     
-     //console.log(browserHueNum);
-     //res.send(browserHue);
-     //var newHue = parseInt(' " ' + browserHue + ' " ');
-     
-     //var found = collection.find( { "row": 15, "col": 15  }, { } );
-    //var myName = found.hue;
-    //var done = tojson(myName);
-     //var item = found['hue'];
-     //var item2 = item['hue'];
-     //var item3 = found['hue'];
-    // console.log(item);
-     //console.log(item2);
-     //console.log(item3);
-     
-   /*  var callback = function(err, doc) {
-    if (err) {
-      console.log(err);
-    }
-    averageHue = doc[0];
-    console.log(averageHue); 
-}; */
-     
+     //look at the current square and make the appropriate actions
      collection.find({ "row": queryRow, "col": queryCol },{},function(e,docs){
            var doc = { usercollection : docs };
-           //console.log(docs)
-        var findHue = docs['0'];
+   
+            var findHue = docs['0'];
             var databaseHue = findHue['hue'];
              var databaseLum = findHue['lum'];
          
-         //var numHue = Math.floor(databaseHue);
-         var averageHue = (databaseHue + browserHueNum) /2;
-        //var  averageHue2 = averageHue / 2;
-         //var numHue2 = Math.floor(averageHue);
-        
-        setHue(averageHue);
-        calculateLum(databaseLum);
-     
+            //get the average color instead of the full color
+            var averageHue = (databaseHue + browserHueNum) /2;
+            
+            //run functions that send the variables outside of the current function
+            setHue(averageHue);
+            calculateLum(databaseLum);
         });
-    // var averageHueNum = Math.floor(averageHue);
+
     var browserLight = req.body['light'];
-     console.log(browserLight);
      
-    var modifyHue
+     //gets the hue variable out of the previous call to the database
+     var modifyHue;
+         
      function setHue(intoVar){
-         modifyHue = intoVar;
+            modifyHue = intoVar;
      }
-     
-     
-     //var currentHue = found.body['hue'];
-     //console.log(done);
-     
+     //modifies the luminosity based on the influence variable then sends both hue and luminosity to the database 
      function calculateLum(dataLum){
         
          if (browserLight == 'true'){
-         var newLum = dataLum + 10;
+            var newLum = dataLum + 10;
              if (newLum < 100){
-         setNewColor(modifyHue, newLum);
+                setNewColor(modifyHue, newLum);
              }
          }else{
              
             newLum = dataLum - 10;
              if (newLum > 0){
-         setNewColor(modifyHue, newLum);
+                    setNewColor(modifyHue, newLum);
              }
          }
      }
     
-     
-     
-     
-     //var db = req.db;
-    //var collection = db.get('grid');     
+         
     function setNewColor(hueToSet, lumToSet){
-     //console.log(hueToSet);
-     //console.log(lumToSet);
-     collection.update(
+        //updates the database with the new values
+        collection.update(
         { "row": queryRow, "col": queryCol },
             { 
             $set: 
                 { hue: hueToSet, lum: lumToSet }
             }
-   
-            )
-     
+        )
     }
-     
-     
-     
+        //collects the whole database and sends it back to the browser
        collection.find({},{},function(e,docs){
            var doc = { usercollection : docs };
-           //console.log(docs)
-          
-           //res.render('ajax', {docs: JSON.stringify(docs), title: 'Test'});
-    res.send(doc);
-     
+           
+            res.send(doc);
         });
-    
-   
-     
-     
-     
-       //req.body['field1']
 });
 
+//refreshes the grid, this router is called once when the page loads and every time the player moves to a different square.
 router.post('/refresh', function (req, res){
 
     var db = req.db;
@@ -184,36 +123,11 @@ router.post('/refresh', function (req, res){
 
        collection.find({},{},function(e,docs){
            var doc = { usercollection : docs };
-           //console.log(docs)
-          
-           //res.render('ajax', {docs: JSON.stringify(docs), title: 'Test'});
+ 
     res.send(doc);
      
         });
-     
-     
+      
 });
-
-
-
-/*console.log("hello");
-    setInterval(function()
-    {
-        console.log("table update");
-    }, 200);*/
-    
-
-    
-/*     document.keydown(function(e)
-    {
-         if (e.keyCode == 37) { console.log("left"); }   // left arrow
-         if (e.keyCode == 38) { console.log("up"); }   // up arrow
-         if (e.keyCode == 39) { console.log("right"); }   // right arrow
-         if (e.keyCode == 40) { console.log("down"); }   // down arrow   
-     });*/
-    
-
-
-
 
 module.exports = router;

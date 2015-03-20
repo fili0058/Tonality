@@ -1,59 +1,56 @@
-console.log("works");
-
 $(document).ready(function() {
 
+//---------Important Global Variables----------
+//Current Row and Column ie position    
 var cRow = 15;
 var cCol = 15;
+    
+//current color    
 var cColor = "blue";
+    
+//hue value
 var cColorNum = 196;
+    
+//randomly selects a color to start
 var colorNum = Math.floor((Math.random() * 4) + 0);
+    //function that updates the color
     changeColor();
-    console.log(colorNum);
+
 //influence: true = light   false = dark
 var influence = true;
 
-var updateInterval;    
-    
-    
+//refreshes the players color    
 refreshLocal(); 
-    
-    
-
+                        //refreshes the entire grid by calling to the node app which finds all the info from the database
                         $.ajax({ 
-                    //    url: 'http://localhost:5000/refresh',
-                       url: 'http://tonality.herokuapp.com/refresh',
+                                  //  url: 'http://localhost:5000/refresh',
+                                    url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
                                    cache: false, 
-
                                     dataType: "json",
-                                  //data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence },
-                                   success: function(data){
-                                     //console.log(data);
-                                       
-                                       var test = data['usercollection'];
-                                        //console.log (test);
-                                     for (var i = 0; i<900; i++){    
-                                        var test2 = test[i];
-                                        //console.log(test2['_id']);
+                                           success: function(data){
+                                                var test = data['usercollection'];
+                                                for (var i = 0; i<900; i++){    
+                                                var test2 = test[i];
 
-                                         if (test2['row'] == cRow && test2['col'] == cCol){
+                                                 if (test2['row'] == cRow && test2['col'] == cCol){
+                                                //do nothing - do not refresh the player's square
+                                                 }else{
 
-                                         }else{
+                                                $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
 
-                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+                                                     }
+                                                 }
 
-                                         }
-                                     }
 
-                                       
-                                       
-                                   }
-                                   , error: function(jqXHR, textStatus, err){
-                                       alert('text status '+textStatus+', err '+err)
-                                   }
+
+                                           }, error: function(jqXHR, textStatus, err){
+                                               alert('text status '+textStatus+', err '+err)
+                                           }
                                 })
-        
+    //variables 'key' allow me to reset use the keyup method
+    //variables 'On' allow me to make the action happen only once before the 'setinterval' kicks in
     var leftKey;  
     var leftOn = 1;   
     var rightKey;  
@@ -63,117 +60,132 @@ refreshLocal();
     var downKey;  
     var downOn = 1; 
     
+    //all arrow keys are roughly the same - they check if the key is being pressed for the first time
+    //then check if the player has gone too far
+    //on an interval of 100ms
+    //they add or subtract the appropriate global variable to move the player
+    //then call the function that refreshes the player color
+    //then they clear the box shadow from the square they just came from
+    //finally they call to the node app which modifies the database
     $(document).keydown(function(e)
     {
         // left arrow
         if (e.keyCode == 37) {
                
-    if (leftOn == 1){
+            if (leftOn == 1){
         
-            leftOn++; 
-        if (cCol > 1){
-                cCol--;
-                               refreshLocal();
-                               $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
-            modifyDatabase();
-                }
-        
-            leftKey = setInterval(function(){
+                leftOn++;
+                //make the player move right away before the interval
                 if (cCol > 1){
-                cCol--;
-                               refreshLocal();
-                               $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
-            modifyDatabase();
+                    cCol--;
+                    refreshLocal();
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+                    modifyDatabase();
                 }
-                
-            }, 100);  
-            
-                }
-         }   
-         if (e.keyCode == 38) { 
-             if (upOn == 1){
-                 upOn++;
-                  if (cRow > 1){              
-                                     cRow--;
-                                     refreshLocal();
-                                     $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
-                  modifyDatabase();
         
+                leftKey = setInterval(function(){
+                    if (cCol > 1){
+                    cCol--;
+                    refreshLocal();
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+                    modifyDatabase();
                     }
-             upKey = setInterval(function(){
-                         if (cRow > 1){
-
-                                                 cRow--;
-                                                 refreshLocal();
-                                                 $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
-                              modifyDatabase();
-                                }
-                  }, 100); 
+                
+                }, 100);     
+            }
+        }   
+        
+        // up arrow
+         if (e.keyCode == 38) { 
+                
+             if (upOn == 1){
+                    upOn++;
+                 
+                    if (cRow > 1){              
+                        cRow--;
+                        refreshLocal();
+                        $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                        modifyDatabase();
+                    }
+                    upKey = setInterval(function(){
+                    
+                        if (cRow > 1){
+                            cRow--;
+                            refreshLocal();
+                            $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                            modifyDatabase();
+                        }
+                    }, 100); 
              }
-         }   // up arrow
+        }   
+        
+         // right arrow
          if (e.keyCode == 39) { 
-         if (rightOn == 1){
+            
+            if (rightOn == 1){
                  rightOn++;
-             if (cCol < 30){
+                
+                if (cCol < 30){
+                    cCol++;
+                    refreshLocal();
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                    modifyDatabase();
+                }
              
-              cCol++;
-                               refreshLocal();
-                               $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
-            modifyDatabase();
-            }
-             
-        rightKey = setInterval(function(){     
-            if (cCol < 30){
-             
-              cCol++;
-                               refreshLocal();
-                               $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
-             
-            modifyDatabase();
-            }
+                rightKey = setInterval(function(){     
+                    
+                    if (cCol < 30){
+                        cCol++;
+                        refreshLocal();
+                        $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                        modifyDatabase();
+                    }
                 }, 100); 
             }
-         }   // right arrow
-         if (e.keyCode == 40) { //console.log("down");
-                      if (downOn == 1){
-                            downOn++;         
-                           if (cRow < 30){
-                                
-                              cRow++;
-                               refreshLocal();
-                               $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
-                                modifyDatabase();   
-                            }
+         }  
+        
+        // down arrow
+        if (e.keyCode == 40) { 
+              
+            if (downOn == 1){
+                    downOn++;         
+                    
+                    if (cRow < 30){
+                        cRow++;
+                        refreshLocal();
+                        $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                        modifyDatabase();   
+                    }
                           
                     downKey = setInterval(function(){      
-                          if (cRow < 30){
-                                
-                              cRow++;
-                               refreshLocal();
-                               $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
-                                modifyDatabase();   
-                            }
-                         }, 100);  
-                      }
-                }   // down arrow 
+                        if (cRow < 30){
+                            cRow++;
+                            refreshLocal();
+                            $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                            modifyDatabase();   
+                        }
+                    }, 100);  
+            }
+        }  
         
-         if (e.keyCode == 32) { 
-             //console.log("space"); 
-                              
-                               changeColor();
-                               refreshLocal();
-                              }
-         if (e.keyCode == 13) { 
-                     //console.log("enter");
-                 if (influence == true){
+        //spacebar
+        if (e.keyCode == 32) { 
+               changeColor();
+               refreshLocal();
+        }
+        
+        //enter
+        if (e.keyCode == 13) { 
+                     
+             if (influence == true){
                      influence = false;
-                 }else{
+             }else{
                      influence = true;
-                 }
+             }
          
-         }
+        }
         
-        
+        // press 0 to create a fully blue grid 
         /*if (e.keyCode == 48) { console.log("new grid"); 
 
                         $.ajax({
@@ -199,21 +211,21 @@ refreshLocal();
     {
         // left arrow
         if (e.keyCode == 37) {
-        //console.log("leftKey up");
             clearInterval(leftKey);
             leftOn = 1;
         }
     
+        //up
         if (e.keyCode == 38) { 
             clearInterval(upKey);
             upOn = 1;
         }
-            
+        //right
          if (e.keyCode == 39) { 
              clearInterval(rightKey);
             rightOn = 1;
          }
-             
+             //down
          if (e.keyCode == 40) { 
              clearInterval(downKey);
             downOn = 1;
@@ -226,7 +238,7 @@ refreshLocal();
          
                          
                    $.ajax({ 
-          // url: 'http://localhost:5000/modify',
+            //url: 'http://localhost:5000/modify',
             url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
@@ -234,36 +246,32 @@ refreshLocal();
 
                         dataType: "json",
                        data: { localRow: cRow, localCol: cCol, localHue: cColor, light: influence }, 
-                       success: function(data){
-                           var test = data['usercollection'];
-                                        //console.log (test);
-                                     for (var i = 0; i<900; i++){    
-                                        var test2 = test[i];
-                                        //console.log(test2['_id']);
+                               success: function(data){
+                                   var test = data['usercollection'];
 
-                                         if (test2['row'] == cRow && test2['col'] == cCol){
+                                             for (var i = 0; i<900; i++){    
+                                                var test2 = test[i];
 
-                                         }else{
 
-                                        $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+                                                 if (test2['row'] == cRow && test2['col'] == cCol){
 
-                                         }
-                                     }
+                                                 }else{
 
-                       }, error: function(jqXHR, textStatus, err){
-                           alert('text status '+textStatus+', err '+err)
-                       }
-                    })
-            
-            
-        }
+                                                $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
+
+                                                 }
+                                             }
+
+                               }, error: function(jqXHR, textStatus, err){
+                                   alert('text status '+textStatus+', err '+err)
+                               }
+                    })  
+                }
   
-    
     function refreshLocal(){
-    $('section:nth-of-type(' + cRow+ ') div:nth-of-type(' + cCol + ')').css("background-color", 'hsl(' + cColorNum + ', 60%, 50%)').css("box-shadow", '0 0 13px' );
+            $('section:nth-of-type(' + cRow+ ') div:nth-of-type(' + cCol + ')').css("background-color", 'hsl(' + cColorNum + ', 60%, 50%)').css("box-shadow", '0 0 13px' );
 }
     
-       
       function changeColor(){
         colorNum++;
         
@@ -280,56 +288,6 @@ refreshLocal();
             cColor = "blue";
             cColorNum = 196;
             colorNum = 0;
-        }
-        
+        }   
     }
-     
-    
-    
-    
 });
-
-  
-
-
-
-/*$.ajax({
-            url: 'http://localhost:5000/ajax',
-            //url: 'http://tonality.herokuapp.com/ajax',
-            dataType: "json",
-            jsonpCallback: "_testcb",
-            cache: false,
-            timeout: 5000,
-            success: function(data) {
-                //console.log(data);
-                
-                var test = data['usercollection'];
-                //console.log (test);
-             for (var i = 0; i<900; i++){    
-                var test2 = test[i];
-                //console.log(test2['_id']);
-
-                 if (test2['row'] == cRow && test2['col'] == cCol){
-                     
-                 }else{
-                 
-                $("section:nth-of-type(" + test2['row'] + ") div:nth-of-type(" + test2['col'] + ")").css("background-color", "hsl(" + test2['hue'] + ", 60%, " + test2['lum'] + "%)");
-                     
-                 }
-             }
-
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('error ' + textStatus + " " + errorThrown);
-            }
-        });*/
-
-// random between 1 and 2
-/*<script>
-function myFunction() {
-    var x = document.getElementById("demo")
-    x.innerHTML = Math.floor((Math.random() * 2) + 1);
-}
-</script>*/
-
-
