@@ -1,5 +1,5 @@
 html{
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
 }
@@ -8,8 +8,8 @@ body {
   position: relative;
   top: 50%;
   font-family: 'Julius Sans One', sans-serif;
-   
     width: 42%;
+    height: 100%;
     margin: -24% auto 0;
 }
 
@@ -35,16 +35,19 @@ div{
     transition: background-color .6s, box-shadow .3s;
 }
 
-/*box-shadow: 0 0 20px hsl(196, 100%, 50%);*/
+p{
+    position: fixed;
+    left: 20px;
+    bottom: 0;
+    line-height: 22px;
+}
 
-/*.row1 div {
-    background: hsl(196, 60%, 50%);    blue
+em{
+    font-size: 14px;
 }
-.row2 div {
-    background: hsl(164, 60%, 50%);     green
+
+.copyright{
+    left: auto;
+    right:20px;
+    font-size: 14px;
 }
-.row3 div {
-    background: hsl(5, 60%, 50%);       orange
-}
-.row4 div {
-    background: hsl(347, 60%, 50%);     pink     */

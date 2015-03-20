@@ -20,8 +20,8 @@ refreshLocal();
     
 
                         $.ajax({ 
-                       // url: 'http://localhost:5000/refresh',
-                          url: 'http://tonality.herokuapp.com/refresh',
+                    //    url: 'http://localhost:5000/refresh',
+                       url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
                                    cache: false, 
@@ -226,7 +226,7 @@ refreshLocal();
          
                          
                    $.ajax({ 
-           // url: 'http://localhost:5000/modify',
+          // url: 'http://localhost:5000/modify',
             url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
