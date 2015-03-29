@@ -11,6 +11,7 @@ body {
     width: 42%;
     height: 100%;
     margin: -24% auto 0;
+    transition: color 0.2s, background-color 0.2s;
 }
 
 a {
@@ -26,7 +27,7 @@ section{
    width: 100%;
 }
 
-div{
+section div{
     background: hsl(150, 0%, 70%);
     width: 2.6%;
     padding-bottom: 2.6%;
@@ -51,3 +52,42 @@ em{
     right:20px;
     font-size: 14px;
 }
+
+
+
+.wBorder{
+    width: auto;
+}
+
+.wBorder div{
+    transition: background-color 0.2s;
+}
+
+.topB, .bottomB, .leftB, .rightB {
+position:fixed;
+background: hsl(5, 60%, 50%);
+}
+.topB, .bottomB {
+left:0;
+width:100%;
+height:5px;
+}
+.topB {
+top:0;
+}
+.bottomB {
+bottom:0;
+}
+.leftB , .rightB {
+top:0;
+height:100%;
+width:5px;
+}
+.leftB {
+left:0;
+}
+.rightB {
+right:0;
+}
+
+

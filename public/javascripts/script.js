@@ -18,13 +18,16 @@ var colorNum = Math.floor((Math.random() * 4) + 0);
 
 //influence: true = light   false = dark
 var influence = true;
+    
+//set the window border color to the current color
+$(".wBorder div").css("background-color", "hsl(" + cColorNum + ', 60%, 50%)');
 
 //refreshes the players color    
 refreshLocal(); 
                         //refreshes the entire grid by calling to the node app which finds all the info from the database
                         $.ajax({ 
-                                  //  url: 'http://localhost:5000/refresh',
-                                    url: 'http://tonality.herokuapp.com/refresh',
+                                    url: 'http://localhost:5000/refresh',
+                                  //  url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
                                    cache: false, 
@@ -178,9 +181,11 @@ refreshLocal();
         if (e.keyCode == 13) { 
                      
              if (influence == true){
-                     influence = false;
+                    influence = false;
+                    $("body").css("background-color", "black").css("color", "white"); 
              }else{
-                     influence = true;
+                    influence = true;
+                    $("body").css("background-color", "white").css("color", "black");
              }
          
         }
@@ -238,8 +243,8 @@ refreshLocal();
          
                          
                    $.ajax({ 
-            //url: 'http://localhost:5000/modify',
-            url: 'http://tonality.herokuapp.com/modify',
+            url: 'http://localhost:5000/modify',
+            //url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
                        cache: false, 
@@ -275,10 +280,10 @@ refreshLocal();
       function changeColor(){
         colorNum++;
         
-        if (colorNum == 1){
+        if (colorNum == 2){
             cColor = "green";
             cColorNum = 164;
-        }else if (colorNum == 2){
+        }else if (colorNum == 1){
             cColor = "orange";
             cColorNum = 5;
         }else if (colorNum == 3){
@@ -288,6 +293,9 @@ refreshLocal();
             cColor = "blue";
             cColorNum = 196;
             colorNum = 0;
-        }   
+        }
+        $(".wBorder div").css("background-color", "hsl(" + cColorNum + ', 60%, 50%)');
     }
+    
+    
 });
