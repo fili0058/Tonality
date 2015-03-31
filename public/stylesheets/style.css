@@ -9,8 +9,7 @@ body {
   top: 50%;
   font-family: 'Julius Sans One', sans-serif;
     width: 42%;
-    height: 100%;
-    margin: -24% auto 0;
+    margin: -20.6% auto 0;
     transition: color 0.2s, background-color 0.2s;
 }
 
@@ -19,7 +18,10 @@ a {
 }
 
 h1{
-     font-size: 38px;
+    position: absolute;
+    left: 0;
+    top: -80px;
+    font-size: 38px;
     letter-spacing: 5px;
 }
 
