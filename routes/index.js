@@ -85,12 +85,16 @@ router.get('/', function(req, res, next) {
             var newLum = dataLum + 10;
              if (newLum < 100){
                 setNewColor(modifyHue, newLum);
+             }else{
+                 setNewColor(modifyHue, 90);
              }
          }else{
              
             newLum = dataLum - 10;
              if (newLum > 0){
                     setNewColor(modifyHue, newLum);
+             }else{
+                setNewColor(modifyHue, 10);
              }
          }
      }
