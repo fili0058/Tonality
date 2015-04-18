@@ -50,8 +50,8 @@ router.get('/', function(req, res, next) {
          browserHueNum = 164;
      }else if (browserHue == "orange"){
          browserHueNum = 5;
-     }else if (browserHue == "pink"){
-        browserHueNum = 347;
+     }else if (browserHue == "purple"){
+        browserHueNum = 276;
      }
      
      //look at the current square and make the appropriate actions

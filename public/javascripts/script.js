@@ -26,8 +26,8 @@ $(".wBorder div").css("background-color", "hsl(" + cColorNum + ', 60%, 50%)');
 refreshLocal(); 
                         //refreshes the entire grid by calling to the node app which finds all the info from the database
                         $.ajax({ 
-                                 //url: 'http://localhost:5000/refresh',
-                                url: 'http://tonality.herokuapp.com/refresh',
+                                url: 'http://localhost:5000/refresh',
+                                //url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
                                    cache: false, 
@@ -182,10 +182,14 @@ refreshLocal();
                      
              if (influence == true){
                     influence = false;
-                    $("body").css("background-color", "black").css("color", "white"); 
+                    $("body").css("color", "white");
+                    $(".light").css("opacity", 0);
+                    $(".dark").css("opacity", 100);
              }else{
                     influence = true;
-                    $("body").css("background-color", "white").css("color", "black");
+                    $("body").css("color", "black");
+                    $(".light").css("opacity", 100);
+                    $(".dark").css("opacity", 0);
              }
          
         }
@@ -243,8 +247,8 @@ refreshLocal();
          
                          
                    $.ajax({ 
-            //url: 'http://localhost:5000/modify',
-           url: 'http://tonality.herokuapp.com/modify',
+            url: 'http://localhost:5000/modify',
+            //url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
                        cache: false, 
@@ -287,14 +291,23 @@ refreshLocal();
             cColor = "orange";
             cColorNum = 5;
         }else if (colorNum == 3){
-            cColor = "pink";
-            cColorNum = 347;
+            cColor = "purple";
+            cColorNum = 276;
         }else if (colorNum == 4){
             cColor = "blue";
             cColorNum = 196;
             colorNum = 0;
         }
-        $(".wBorder div").css("background-color", "hsl(" + cColorNum + ', 60%, 50%)');
+          $("body").css("background-color", "hsl(" + cColorNum + ", 60%, 50%)");
+          
+        /*$(".leftB").css("background", "-webkit-linear-gradient(left, hsl(" + cColorNum + ", 60%, 50%), transparent)");
+        $(".rightB").css("background", "-webkit-linear-gradient(right, hsl(" + cColorNum + ", 60%, 50%), transparent)");*/  
+          
+ /*       background: -webkit-linear-gradient(left, hsl(5, 60%, 50%), transparent);
+background: -o-linear-gradient(left, hsl(5, 60%, 50%), transparent);
+background: -moz-linear-gradient(left, hsl(5, 60%, 50%), transparent); 
+background: linear-gradient(to right, hsl(5, 60%, 50%), transparent);  */
+          
     }
     
     
