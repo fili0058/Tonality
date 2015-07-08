@@ -98,12 +98,23 @@ em{
     font-size: 14px;
 }
 
-
-@media all and (orientation:portrait) {
-    em{
-        color: #0f0;
+@media (max-width:1024px){
+    #board{
+        position: fixed;
+        top: 56px;
+        width: 55%;
+        left: 50%;
+        margin-left: -27.5%;
+    }
+    
+    @media all and (orientation:portrait) {
+    #board{  
+        position: fixed;
+        top: 56px;
+        width: 85%;
+        left: 50%;
+        margin-left: -42.5%;
     }
 }
-
-
+}
 
