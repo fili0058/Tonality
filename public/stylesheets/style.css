@@ -4,19 +4,9 @@ html{
     width: 100%;
 }
 
-/*
 body {
-  position: relative;
-  top: 50%;
   font-family: 'Julius Sans One', sans-serif;
-    width: 42%;
-    margin: -20.6% auto 0;
-*/
-   /* background-color: #e8decb;*/
-/*
-    transition: color 0.4s, background-color 0.4s;
 }
-*/
 
 #background{
     position: fixed;
@@ -30,11 +20,8 @@ body {
 #fullWrap {
   position: relative;
   top: 50%;
-  font-family: 'Julius Sans One', sans-serif;
     width: 42%;
     margin: -20.6% auto 0;
-   /* background-color: #e8decb;*/
-    /*transition: color 0.4s, background-color 0.4s;*/
 }
 
 .light{
@@ -110,47 +97,3 @@ em{
     right:20px;
     font-size: 14px;
 }
-
-
-
-.wBorder{
-    width: auto;
-}
-
-.wBorder div{
-    transition: all 1.8s;
-}
-
-.topB, .bottomB, .leftB, .rightB {
-position:fixed;
-/*background: hsl(5, 60%, 50%);*/
-}
-/*.topB, .bottomB {
-left:0;
-width:100%;
-height:5px;
-}
-.topB {
-top:0;
-}
-.bottomB {
-bottom:0;
-}*/
-/*.leftB , .rightB {
-top:0;
-height:100%;
-width:43%;
-z-index: -100;
-}*/
-.leftB {
-left:0;
-/*background: -webkit-linear-gradient(left, hsl(5, 60%, 50%), transparent);
-background: -o-linear-gradient(left, hsl(5, 60%, 50%), transparent);
-background: -moz-linear-gradient(left, hsl(5, 60%, 50%), transparent); 
-background: linear-gradient(to right, hsl(5, 60%, 50%), transparent);*/
-}
-.rightB {
-right:0;
-}
-
-
