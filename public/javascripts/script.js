@@ -1,5 +1,14 @@
 $(document).ready(function() {
 
+if (Modernizr.touch){
+    alert("has touch");
+   // bind to touchstart, touchmove, etc and watch `event.streamId`
+} else {
+    alert("no Touch");
+   // bind to normal click, mousemove, etc
+}    
+    
+    
 //---------Important Global Variables----------
 //Current Row and Column ie position    
 var cRow = 15;
@@ -247,7 +256,7 @@ refreshLocal();
          
                          
                    $.ajax({ 
-            url: 'http://localhost:5000/modify',
+            //url: 'http://localhost:5000/modify',
             url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
@@ -298,7 +307,7 @@ refreshLocal();
             cColorNum = 196;
             colorNum = 0;
         }
-          $("#background").css("background-color", "hsl(" + cColorNum + ", 60%, 50%)");
+          $("#fullBG").css("background-color", "hsl(" + cColorNum + ", 60%, 50%)");
           
     }
     

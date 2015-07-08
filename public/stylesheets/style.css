@@ -8,7 +8,7 @@ body {
   font-family: 'Julius Sans One', sans-serif;
 }
 
-#background{
+#fullBG{
     position: fixed;
     height: 100%;
     width: 100%;
@@ -97,3 +97,13 @@ em{
     right:20px;
     font-size: 14px;
 }
+
+
+@media all and (orientation:portrait) {
+    em{
+        color: #0f0;
+    }
+}
+
+
+
