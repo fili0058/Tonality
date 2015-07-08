@@ -2,8 +2,8 @@ extends layout
 
 block content
     
-    div(id="fullBG")
-        div(id="fullWrap")
+    div(class="fullBG")
+        div(class="fullWrap")
             div(class="light")
             div(class="dark")
 
@@ -13,7 +13,7 @@ block content
                 div(class="leftB")
                 div(class="rightB")
             
-            div(id="board")
+            div(class="board")
                 section
                     h1 TONALITY
                     <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>  
@@ -136,7 +136,7 @@ block content
                     <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                     <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
 
-            p <em>Controls</em><br>ARROW KEYS - Move<br>SPACEBAR - Cycle Colors<br>ENTER - Toggle Influence Light/Dark
+            p(class="controls") <em>Controls</em><br>ARROW KEYS - Move<br>SPACEBAR - Cycle Colors<br>ENTER - Toggle Influence Light/Dark
 
             p(class="copyright") Copyright Alain Filion 2015
 

@@ -1,11 +1,9 @@
 $(document).ready(function() {
 
 if (Modernizr.touch){
-    alert("has touch");
-   // bind to touchstart, touchmove, etc and watch `event.streamId`
+   $(".controls").css('display', 'none');
 } else {
-    alert("no Touch");
-   // bind to normal click, mousemove, etc
+
 }    
     
     
@@ -307,7 +305,7 @@ refreshLocal();
             cColorNum = 196;
             colorNum = 0;
         }
-          $("#fullBG").css("background-color", "hsl(" + cColorNum + ", 60%, 50%)");
+          $(".fullBG").css("background-color", "hsl(" + cColorNum + ", 60%, 50%)");
           
     }
     

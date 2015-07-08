@@ -8,7 +8,7 @@ body {
   font-family: 'Julius Sans One', sans-serif;
 }
 
-#fullBG{
+.fullBG{
     position: fixed;
     height: 100%;
     width: 100%;
@@ -17,7 +17,7 @@ body {
     transition: color 0.4s, background-color 0.4s;
 }
 
-#fullWrap {
+.fullWrap {
   position: relative;
   top: 50%;
     width: 42%;
@@ -99,7 +99,7 @@ em{
 }
 
 @media (max-width:1024px){
-    #board{
+    .board{
         position: fixed;
         top: 56px;
         width: 55%;
@@ -107,14 +107,30 @@ em{
         margin-left: -27.5%;
     }
     
-    @media all and (orientation:portrait) {
-    #board{  
-        position: fixed;
-        top: 56px;
-        width: 85%;
-        left: 50%;
-        margin-left: -42.5%;
+    .copyright{
+        font-size: 12px;
+        bottom: -11px;
     }
+    
+    h1 {
+        top: -67px;
+        font-size: 30px;
+    }
+
+            @media all and (orientation:portrait) {
+                .board{  
+                    position: fixed;
+                    top: 56px;
+                    width: 85%;
+                    left: 50%;
+                    margin-left: -42.5%;
+                }
+            }
 }
+
+@media (max-width:320px){
+    .copyright{
+        font-size: 9px;
+    }
 }
 
