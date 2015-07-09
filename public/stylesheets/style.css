@@ -116,7 +116,7 @@ em{
         top: -67px;
         font-size: 30px;
     }
-
+    
             @media all and (orientation:portrait) {
                 .board{  
                     position: fixed;
@@ -132,5 +132,122 @@ em{
     .copyright{
         font-size: 9px;
     }
+}
+
+.arrows{
+  position: fixed;
+  width: 19%;
+  padding-bottom: 19%;
+  top: 40%;
+  right: 1%;
+  /*background-color: rgba(22,220,35,0.3);*/
+}
+
+.leftA{
+    position:absolute;
+    left:0;
+    top:33.33%;
+    width: 0; 
+	height: 0; 
+	border-top: 3.33vw solid transparent;
+	border-bottom: 3.33vw solid transparent;
+	border-right: 5.3vw solid rgba(0,0,0,0.5);
+}
+
+.rightA{
+    position:absolute;
+    right:0;
+    top:33.33%;
+    width: 0; 
+	height: 0; 
+	border-top: 3.33vw solid transparent;
+	border-bottom: 3.33vw solid transparent;
+	border-left: 5.3vw solid rgba(0,0,0,0.5);
+}
+
+.downA{
+    position:absolute;
+    bottom:0;
+    left:33.33%;
+    width: 0; 
+	height: 0; 
+	border-left: 3.33vw solid transparent;
+	border-right: 3.33vw solid transparent;
+	border-top: 5.3vw solid rgba(0,0,0,0.5);
+}
+
+.upA{
+    position:absolute;
+    top:0;
+    left:33.33%;
+    width: 0; 
+	height: 0; 
+	border-left: 3.33vw solid transparent;
+	border-right: 3.33vw solid transparent;
+	border-bottom: 5.3vw solid rgba(0,0,0,0.5);
+}
+
+.darkLight{
+    position:absolute;
+    width:25%;
+    padding-bottom:25%;
+    left: 37.495%;
+    top:37.495%;
+    /*border-radius:50%;*/
+    background-color: rgba(255,255,255,0.5);
+}
+
+
+.colorSquares{
+    position:fixed;
+    left:1%;
+    top:41.5%;
+    width:17%;
+    padding-bottom:17%;
+    /*background-color:rgba(0,0,0,.2);*/
+}
+
+.greenS{
+    position:absolute;
+    left:0;
+    top:0;
+    width:42%;
+    padding-bottom:42%;
+    background-color: hsl(164, 60%, 50%);
+    border: 0.4vw solid rgba(0, 0, 0, 0.55);
+}
+
+.orangeS{
+    position:absolute;
+    right:0;
+    top:0;
+    width:42%;
+    padding-bottom:42%;
+    background-color: hsl(5, 60%, 50%);
+    border: 0.4vw solid rgba(0, 0, 0, 0.55);
+    opacity: 0.5;
+}
+
+.purpleS{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:42%;
+    padding-bottom:42%;
+    background-color: hsl(276, 60%, 50%);
+    border: 0.4vw solid rgba(0, 0, 0, 0.55);
+    opacity: 0.5;
+}
+
+.blueS{
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:42%;
+    padding-bottom:42%;
+    background-color: hsl(196, 60%, 50%);
+    border: 0.4vw solid rgba(0, 0, 0, 0.55);
+    opacity: 0.5;
+    
 }
 
