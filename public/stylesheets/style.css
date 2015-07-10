@@ -114,6 +114,15 @@ em{
     z-index: 1000;
 }
 
+.arrows div{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .leftA{
     position:absolute;
     left:0;
@@ -221,6 +230,12 @@ em{
 
 .colorSquares div{
     border: 0.4vw solid rgba(0, 0, 0, 0.55);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 
