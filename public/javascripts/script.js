@@ -9,6 +9,8 @@ if (Modernizr.touch){
     
 //---------Important Global Variables----------
     
+var light = true;    
+    
 var dragging = false;
     
 $("body").on("touchmove", function(){
@@ -20,12 +22,17 @@ $("body").on("touchend", function(){
     
     clearInterval(leftKey);
     leftOn = 1;
+    $(".leftA").css('border-right', '5.3vw solid rgba(0,0,0,0.5)');
     clearInterval(upKey);
     upOn = 1;
+    $(".upA").css('border-bottom', '5.3vw solid rgba(0,0,0,0.5)');
     clearInterval(rightKey);
     rightOn = 1;
+    $(".rightA").css('border-left', '5.3vw solid rgba(0,0,0,0.5)');
     clearInterval(downKey);
     downOn = 1;
+    $(".downA").css('border-top', '5.3vw solid rgba(0,0,0,0.5)');
+
 });
     
 //Current Row and Column ie position    
@@ -39,15 +46,13 @@ var cColor = "blue";
 var cColorNum = 196;
     
 //randomly selects a color to start
-var colorNum = Math.floor((Math.random() * 4) + 0);
+var colorNum = Math.floor((Math.random() * 4) + 1);
     //function that updates the color
     changeColor();
 
 //influence: true = light   false = dark
 var influence = true;
-    
-//set the window border color to the current color
-$(".wBorder div").css("background-color", "hsl(" + cColorNum + ', 60%, 50%)');
+
 
 //refreshes the players color    
 refreshLocal(); 
@@ -199,7 +204,8 @@ refreshLocal();
         }  
         
         //spacebar
-        if (e.keyCode == 32) { 
+        if (e.keyCode == 32) {
+            colorNum++;
                changeColor();
                refreshLocal();
         }
@@ -212,13 +218,16 @@ refreshLocal();
                     $("body").css("color", "white");
                     $(".light").css("opacity", 0);
                     $(".dark").css("opacity", 100);
+                 $(".darkLight").css('background-color', 'rgba(0,0,0,0.5)');
+                light = false;
              }else{
                     influence = true;
                     $("body").css("color", "black");
                     $(".light").css("opacity", 100);
                     $(".dark").css("opacity", 0);
+                 $(".darkLight").css('background-color', 'rgba(255,255,255,0.5)');
+                 light = true;                
              }
-         
         }
         
         // press 0 to create a fully blue grid 
@@ -273,6 +282,8 @@ refreshLocal();
       if (dragging)
       return;
       //button action code
+        $(".leftA").css('border-right', '5.3vw solid rgba(255,255,255,0.5)');
+        
         if (leftOn == 1){
         
                 leftOn++;
@@ -300,6 +311,8 @@ refreshLocal();
       if (dragging)
       return;
       //button action code
+        $(".rightA").css('border-left', '5.3vw solid rgba(255,255,255,0.5)');
+        
     if (rightOn == 1){
                  rightOn++;
                 
@@ -327,6 +340,8 @@ refreshLocal();
       if (dragging)
       return;
       //button action code
+        $(".upA").css('border-bottom', '5.3vw solid rgba(255,255,255,0.5)');
+        
         if (upOn == 1){
                     upOn++;
                  
@@ -352,6 +367,8 @@ refreshLocal();
       if (dragging)
       return;
       //button action code
+        $(".downA").css('border-top', '5.3vw solid rgba(255,255,255,0.5)');
+        
         if (downOn == 1){
                     downOn++;         
                     
@@ -373,10 +390,50 @@ refreshLocal();
             }
     });
     
-        function modifyDatabase(){
+     $(".darkLight").on("touchstart", function(){
+      
+        if (light == true){ 
+        $(".darkLight").css('background-color', 'rgba(0,0,0,0.5)');
+        light = false;
+        }else{
+        $(".darkLight").css('background-color', 'rgba(255,255,255,0.5)');
+        light = true;
+        }
          
-                         
-                   $.ajax({ 
+        if (influence == true){
+                    influence = false;
+                    $("body").css("color", "white");
+                    $(".light").css("opacity", 0);
+                    $(".dark").css("opacity", 100);
+             }else{
+                    influence = true;
+                    $("body").css("color", "black");
+                    $(".light").css("opacity", 100);
+                    $(".dark").css("opacity", 0);
+        }
+     });
+    
+    
+    $(".greenS").on("touchstart", function(){
+        colorNum = 1;
+        changeColor();
+    });
+    $(".orangeS").on("touchstart", function(){
+        colorNum = 2;
+        changeColor();
+    });
+    $(".purpleS").on("touchstart", function(){
+        colorNum = 3;
+        changeColor();
+    });
+     $(".blueS").on("touchstart", function(){
+         colorNum = 4;
+        changeColor();
+     });
+    
+        function modifyDatabase(){
+            
+            $.ajax({ 
             //url: 'http://localhost:5000/modify',
             url: 'http://tonality.herokuapp.com/modify',
 
@@ -412,24 +469,32 @@ refreshLocal();
 }
     
       function changeColor(){
-        colorNum++;
+        if(colorNum == 5){
+            colorNum = 1;
+        }
+            $(".blueS").css('opacity', '0.5');
+            $(".purpleS").css('opacity', '0.5');
+            $(".orangeS").css('opacity', '0.5');
+            $(".greenS").css('opacity', '0.5');
         
-        if (colorNum == 2){
+        if (colorNum == 1){
             cColor = "green";
             cColorNum = 164;
-        }else if (colorNum == 1){
+            $(".greenS").css('opacity', '1');
+        }else if (colorNum == 2){
             cColor = "orange";
             cColorNum = 5;
+            $(".orangeS").css('opacity', '1');
         }else if (colorNum == 3){
             cColor = "purple";
             cColorNum = 276;
+            $(".purpleS").css('opacity', '1');
         }else if (colorNum == 4){
             cColor = "blue";
             cColorNum = 196;
-            colorNum = 0;
+            $(".blueS").css('opacity', '1');
         }
           $(".fullBG").css("background-color", "hsl(" + cColorNum + ", 60%, 50%)");
-          
     }
     
     

@@ -121,6 +121,7 @@ em{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    transition: border-color 0.3s;
 }
 
 .leftA{
@@ -195,6 +196,7 @@ em{
     width:42%;
     padding-bottom:42%;
     background-color: hsl(164, 60%, 50%);
+    opacity: 0.5;
 }
 
 .orangeS{
@@ -236,6 +238,7 @@ em{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    transition: opacity 0.3s;
 }
 
 
