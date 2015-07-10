@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
 if (Modernizr.touch){
-   $(".controls").css('display', 'none');
+    $(".controls").css('display', 'none');
 } else {
-
+    $(".colorSquares, .arrows").css('display', 'none');
 }    
     
     
@@ -33,8 +33,8 @@ $(".wBorder div").css("background-color", "hsl(" + cColorNum + ', 60%, 50%)');
 refreshLocal(); 
                         //refreshes the entire grid by calling to the node app which finds all the info from the database
                         $.ajax({ 
-                                //url: 'http://localhost:5000/refresh',
-                                url: 'http://tonality.herokuapp.com/refresh',
+                                url: 'http://localhost:5000/refresh',
+                                //url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
                                    cache: false, 
@@ -248,14 +248,43 @@ refreshLocal();
          }
     });
                       
-                      
+    
+    $(".leftA").mousedown(function(){
+            if (leftOn == 1){
+        
+                leftOn++;
+                //make the player move right away before the interval
+                if (cCol > 1){
+                    cCol--;
+                    refreshLocal();
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+                    modifyDatabase();
+                }
+        
+                leftKey = setInterval(function(){
+                    if (cCol > 1){
+                    cCol--;
+                    refreshLocal();
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+                    modifyDatabase();
+                    }
+                
+                }, 100);     
+            }
+    });
+    
+    $(".leftA").mouseup(function(){
+        clearInterval(leftKey);
+        leftOn = 1;
+    });
+    
     
         function modifyDatabase(){
          
                          
                    $.ajax({ 
-            //url: 'http://localhost:5000/modify',
-            url: 'http://tonality.herokuapp.com/modify',
+            url: 'http://localhost:5000/modify',
+            //url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
                        cache: false, 
