@@ -15,37 +15,17 @@ $("body").on("touchmove", function(){
   dragging = true;
 });    
     
-$(".rightA").on("touchstart", function(){
-      if (dragging)
-      return;
-      //button action code
-    if (rightOn == 1){
-                 rightOn++;
-                
-                if (cCol < 30){
-                    cCol++;
-                    refreshLocal();
-                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
-                    modifyDatabase();
-                }
-             
-                rightKey = setInterval(function(){     
-                    
-                    if (cCol < 30){
-                        cCol++;
-                        refreshLocal();
-                        $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
-                        modifyDatabase();
-                    }
-                }, 100); 
-            }
-        
-});
-    
 $("body").on("touchend", function(){
     dragging = false;
-     clearInterval(rightKey);
+    
+    clearInterval(leftKey);
+    leftOn = 1;
+    clearInterval(upKey);
+    upOn = 1;
+    clearInterval(rightKey);
     rightOn = 1;
+    clearInterval(downKey);
+    downOn = 1;
 });
     
 //Current Row and Column ie position    
@@ -287,10 +267,13 @@ refreshLocal();
             downOn = 1;
          }
     });
-                      
     
-   /* $(".leftA").mousedown(function(){
-            if (leftOn == 1){
+    
+    $(".leftA").on("touchstart", function(){
+      if (dragging)
+      return;
+      //button action code
+        if (leftOn == 1){
         
                 leftOn++;
                 //make the player move right away before the interval
@@ -311,13 +294,84 @@ refreshLocal();
                 
                 }, 100);     
             }
+        });
+    
+    $(".rightA").on("touchstart", function(){
+      if (dragging)
+      return;
+      //button action code
+    if (rightOn == 1){
+                 rightOn++;
+                
+                if (cCol < 30){
+                    cCol++;
+                    refreshLocal();
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                    modifyDatabase();
+                }
+             
+                rightKey = setInterval(function(){     
+                    
+                    if (cCol < 30){
+                        cCol++;
+                        refreshLocal();
+                        $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                        modifyDatabase();
+                    }
+                }, 100); 
+            }     
+    });
+
+        
+    $(".upA").on("touchstart", function(){
+      if (dragging)
+      return;
+      //button action code
+        if (upOn == 1){
+                    upOn++;
+                 
+                    if (cRow > 1){              
+                        cRow--;
+                        refreshLocal();
+                        $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                        modifyDatabase();
+                    }
+                    upKey = setInterval(function(){
+                    
+                        if (cRow > 1){
+                            cRow--;
+                            refreshLocal();
+                            $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                            modifyDatabase();
+                        }
+                    }, 100); 
+             }
     });
     
-    $(".leftA").mouseup(function(){
-        clearInterval(leftKey);
-        leftOn = 1;
-    });*/
-    
+    $(".downA").on("touchstart", function(){
+      if (dragging)
+      return;
+      //button action code
+        if (downOn == 1){
+                    downOn++;         
+                    
+                    if (cRow < 30){
+                        cRow++;
+                        refreshLocal();
+                        $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                        modifyDatabase();   
+                    }
+                          
+                    downKey = setInterval(function(){      
+                        if (cRow < 30){
+                            cRow++;
+                            refreshLocal();
+                            $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                            modifyDatabase();   
+                        }
+                    }, 100);  
+            }
+    });
     
         function modifyDatabase(){
          
