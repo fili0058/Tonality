@@ -8,6 +8,46 @@ if (Modernizr.touch){
     
     
 //---------Important Global Variables----------
+    
+var dragging = false;
+    
+$("body").on("touchmove", function(){
+  dragging = true;
+});    
+    
+$(".rightA").on("touchstart", function(){
+      if (dragging)
+      return;
+      //button action code
+    if (rightOn == 1){
+                 rightOn++;
+                
+                if (cCol < 30){
+                    cCol++;
+                    refreshLocal();
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                    modifyDatabase();
+                }
+             
+                rightKey = setInterval(function(){     
+                    
+                    if (cCol < 30){
+                        cCol++;
+                        refreshLocal();
+                        $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                        modifyDatabase();
+                    }
+                }, 100); 
+            }
+        
+});
+    
+$("body").on("touchend", function(){
+    dragging = false;
+     clearInterval(rightKey);
+    rightOn = 1;
+});
+    
 //Current Row and Column ie position    
 var cRow = 15;
 var cCol = 15;
@@ -249,7 +289,7 @@ refreshLocal();
     });
                       
     
-    $(".leftA").mousedown(function(){
+   /* $(".leftA").mousedown(function(){
             if (leftOn == 1){
         
                 leftOn++;
@@ -276,7 +316,7 @@ refreshLocal();
     $(".leftA").mouseup(function(){
         clearInterval(leftKey);
         leftOn = 1;
-    });
+    });*/
     
     
         function modifyDatabase(){
