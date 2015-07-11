@@ -58,8 +58,8 @@ var influence = true;
 refreshLocal(); 
                         //refreshes the entire grid by calling to the node app which finds all the info from the database
                         $.ajax({ 
-                                //url: 'http://localhost:5000/refresh',
-                                url: 'http://tonality.herokuapp.com/refresh',
+                                url: 'http://localhost:5000/refresh',
+                                //url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
                                    cache: false, 
@@ -115,6 +115,7 @@ refreshLocal();
                     cCol--;
                     refreshLocal();
                     $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("border-radius", 'initial' );
                     modifyDatabase();
                 }
         
@@ -123,6 +124,7 @@ refreshLocal();
                     cCol--;
                     refreshLocal();
                     $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("border-radius", 'initial' );
                     modifyDatabase();
                     }
                 
@@ -140,6 +142,7 @@ refreshLocal();
                         cRow--;
                         refreshLocal();
                         $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                        $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("border-radius", 'initial' );
                         modifyDatabase();
                     }
                     upKey = setInterval(function(){
@@ -148,6 +151,7 @@ refreshLocal();
                             cRow--;
                             refreshLocal();
                             $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                            $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("border-radius", 'initial' );
                             modifyDatabase();
                         }
                     }, 100); 
@@ -164,6 +168,7 @@ refreshLocal();
                     cCol++;
                     refreshLocal();
                     $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol -1) + ')').css("border-radius", 'initial' );
                     modifyDatabase();
                 }
              
@@ -173,6 +178,7 @@ refreshLocal();
                         cCol++;
                         refreshLocal();
                         $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                        $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("border-radius", 'initial' );
                         modifyDatabase();
                     }
                 }, 100); 
@@ -189,6 +195,7 @@ refreshLocal();
                         cRow++;
                         refreshLocal();
                         $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                        $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("border-radius", 'initial' );
                         modifyDatabase();   
                     }
                           
@@ -197,6 +204,7 @@ refreshLocal();
                             cRow++;
                             refreshLocal();
                             $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                            $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("border-radius", 'initial' );
                             modifyDatabase();   
                         }
                     }, 100);  
@@ -292,6 +300,7 @@ refreshLocal();
                     cCol--;
                     refreshLocal();
                     $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("border-radius", 'initial' );
                     modifyDatabase();
                 }
         
@@ -300,6 +309,7 @@ refreshLocal();
                     cCol--;
                     refreshLocal();
                     $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("box-shadow", 'none' );
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol + 1) + ')').css("border-radius", 'initial' );
                     modifyDatabase();
                     }
                 
@@ -320,6 +330,7 @@ refreshLocal();
                     cCol++;
                     refreshLocal();
                     $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                    $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("border-radius", 'initial' );
                     modifyDatabase();
                 }
              
@@ -329,6 +340,7 @@ refreshLocal();
                         cCol++;
                         refreshLocal();
                         $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol - 1) + ')').css("box-shadow", 'none' );
+                        $('section:nth-of-type(' + cRow + ') div:nth-of-type(' + (cCol -1) + ')').css("border-radius", 'initial' );
                         modifyDatabase();
                     }
                 }, 100); 
@@ -349,6 +361,7 @@ refreshLocal();
                         cRow--;
                         refreshLocal();
                         $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                        $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("border-radius", 'initial' );
                         modifyDatabase();
                     }
                     upKey = setInterval(function(){
@@ -357,6 +370,7 @@ refreshLocal();
                             cRow--;
                             refreshLocal();
                             $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                            $('section:nth-of-type(' + (cRow + 1) + ') div:nth-of-type(' + cCol + ')').css("border-radius", 'initial' );
                             modifyDatabase();
                         }
                     }, 100); 
@@ -376,6 +390,7 @@ refreshLocal();
                         cRow++;
                         refreshLocal();
                         $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                        $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("border-radius", 'initial' );
                         modifyDatabase();   
                     }
                           
@@ -384,6 +399,7 @@ refreshLocal();
                             cRow++;
                             refreshLocal();
                             $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("box-shadow", 'none' );
+                            $('section:nth-of-type(' + (cRow - 1) + ') div:nth-of-type(' + cCol + ')').css("border-radius", 'initial' );
                             modifyDatabase();   
                         }
                     }, 100);  
@@ -434,8 +450,8 @@ refreshLocal();
         function modifyDatabase(){
             
             $.ajax({ 
-            //url: 'http://localhost:5000/modify',
-            url: 'http://tonality.herokuapp.com/modify',
+            url: 'http://localhost:5000/modify',
+            //url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
                        cache: false, 
@@ -466,6 +482,8 @@ refreshLocal();
   
     function refreshLocal(){
             $('section:nth-of-type(' + cRow+ ') div:nth-of-type(' + cCol + ')').css("background-color", 'hsl(' + cColorNum + ', 60%, 50%)').css("box-shadow", '0 0 13px' );
+        $('section:nth-of-type(' + cRow+ ') div:nth-of-type(' + cCol + ')').css("border-radius", '50%' );
+        //$('section:nth-of-type(' + cCol+ ') div').css("box-shadow", '0 0 13px' );
 }
     
       function changeColor(){

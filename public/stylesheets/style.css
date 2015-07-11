@@ -83,7 +83,7 @@ section div{
     padding-bottom: 2.6%;
     margin: 0.35%;
     float: left;
-    transition: background-color .6s, box-shadow .3s;
+    /*transition: background-color .6s, box-shadow .3s;*/
 }
 
 p{
@@ -121,7 +121,7 @@ em{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    transition: border-color 0.3s;
+    /*transition: border-color 0.3s;*/
 }
 
 .leftA{
@@ -238,7 +238,7 @@ em{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    transition: opacity 0.3s;
+   /* transition: opacity 0.3s;*/
 }
 
 
