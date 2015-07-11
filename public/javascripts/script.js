@@ -58,8 +58,8 @@ var influence = true;
 refreshLocal(); 
                         //refreshes the entire grid by calling to the node app which finds all the info from the database
                         $.ajax({ 
-                                url: 'http://localhost:5000/refresh',
-                                //url: 'http://tonality.herokuapp.com/refresh',
+                                //url: 'http://localhost:5000/refresh',
+                                url: 'http://tonality.herokuapp.com/refresh',
 
                                    type: 'POST',
                                    cache: false, 
@@ -450,8 +450,8 @@ refreshLocal();
         function modifyDatabase(){
             
             $.ajax({ 
-            url: 'http://localhost:5000/modify',
-            //url: 'http://tonality.herokuapp.com/modify',
+            //url: 'http://localhost:5000/modify',
+            url: 'http://tonality.herokuapp.com/modify',
 
                        type: 'POST',
                        cache: false, 
